@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LDL MOUNT — 공간을 완성하는 거치 솔루션</title>
+  <meta name="description" content="이동식 TV스탠드, 모니터암, 벽걸이 브라켓 등 300가지 이상의 전문 거치 솔루션. 사무·회의실·게이밍 모든 환경을 지원합니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="/" class="logo" aria-label="LDL MOUNT 홈">
+        <span class="logo__ldl">LDL</span>
+        <span class="logo__mount">MOUNT</span>
+      </a>
+
+      <ul class="nav__menu" role="list">
+        <li><a href="#solutions">솔루션별 찾기</a></li>
+        <li><a href="#bestsellers">상품 카테고리</a></li>
+        <li><a href="#b2b">B2B 기업구매</a></li>
+      </ul>
+
+      <a href="#b2b" class="btn btn--teal nav__cta">견적 요청 ↗</a>
+
+      <button class="hamburger" aria-label="메뉴 열기" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="nav__drawer" id="nav-drawer" role="navigation">
+    <a href="#solutions" onclick="toggleMenu()">솔루션별 찾기</a>
+    <a href="#bestsellers" onclick="toggleMenu()">상품 카테고리</a>
+    <a href="#b2b" onclick="toggleMenu()">B2B 기업구매</a>
+    <a href="#b2b" class="btn btn--teal" onclick="toggleMenu()">견적 요청 ↗</a>
+  </div>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <!-- 시그니처: 브래킷 코너 모티프 -->
+    <div class="hero__corner hero__corner--tl" aria-hidden="true"></div>
+    <div class="hero__corner hero__corner--br" aria-hidden="true"></div>
+    <div class="hero__bg-text" aria-hidden="true">MOUNT</div>
+
+    <div class="hero__inner">
+      <div class="eyebrow hero__eyebrow">Engineered to Support What Matters</div>
+      <h1 class="hero__headline">
+        STRONGER<br>
+        <em>SPACES.</em>
+      </h1>
+      <p class="hero__sub">
+        이동식 TV스탠드 · 모니터암 · 벽걸이 브라켓<br>
+        300가지 이상의 거치 솔루션으로<br>당신의 공간을 완성합니다.
+      </p>
+      <div class="hero__ctas">
+        <a href="#solutions" class="btn btn--teal">내게 맞는 상품 찾기 →</a>
+        <a href="#b2b" class="btn btn--outline-light">B2B 견적 요청</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SOLUTIONS BAR ========== -->
+  <section class="solutions" id="solutions">
+    <div class="container">
+      <div class="solutions__head">
+        <p class="eyebrow">솔루션별 찾기</p>
+        <p class="eyebrow" style="font-size:11px; color: var(--gray); gap:0;">어떤 공간에 설치하시나요?</p>
+      </div>
+      <div class="solutions__grid">
+
+        <!-- 1인 사무 -->
+        <a href="#" class="sol-card">
+          <div class="sol-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="4" width="18" height="12" rx="1" stroke="white" stroke-width="2"/>
+              <path d="M8 20h8M12 16v4" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="sol-card__name">1인 사무</span>
+        </a>
+
+        <!-- 관제/멀티 -->
+        <a href="#" class="sol-card">
+          <div class="sol-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="5" width="9" height="7" rx="1" stroke="white" stroke-width="2"/>
+              <rect x="13" y="5" width="9" height="7" rx="1" stroke="white" stroke-width="2"/>
+              <path d="M5 18h14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="sol-card__name">관제 / 멀티</span>
+        </a>
+
+        <!-- 게이밍 -->
+        <a href="#" class="sol-card">
+          <div class="sol-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="6" width="20" height="13" rx="1" stroke="white" stroke-width="2"/>
+              <path d="M8 20h8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 6V3" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="sol-card__name">게이밍</span>
+        </a>
+
+        <!-- 회의실 -->
+        <a href="#" class="sol-card">
+          <div class="sol-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="4" width="20" height="13" rx="1" stroke="white" stroke-width="2"/>
+              <path d="M7 21h10M12 17v4" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="12" cy="10" r="2" stroke="white" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <span class="sol-card__name">회의실</span>
+        </a>
+
+        <!-- 매장/전시 -->
+        <a href="#" class="sol-card">
+          <div class="sol-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" y="3" width="14" height="18" rx="1" stroke="white" stroke-width="2"/>
+              <circle cx="12" cy="17" r="1.5" fill="white"/>
+              <rect x="8" y="7" width="8" height="6" rx="0.5" stroke="white" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <span class="sol-card__name">매장 / 전시</span>
+        </a>
+
+        <!-- 홈오피스 -->
+        <a href="#" class="sol-card">
+          <div class="sol-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 12L12 4l9 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="sol-card__name">홈오피스</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BEST SELLERS ========== -->
+  <section class="bestsellers" id="bestsellers">
+    <div class="container">
+      <div class="bestsellers__head">
+        <h2 class="section-title">지금 가장 많이 찾는 상품</h2>
+        <a href="#" class="view-all">전체 상품 보기 →</a>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tab-bar" role="tablist">
+        <button class="tab-btn active" role="tab" onclick="setTab(this)">전체</button>
+        <button class="tab-btn" role="tab" onclick="setTab(this)">B2B 인기</button>
+        <button class="tab-btn" role="tab" onclick="setTab(this)">신상품</button>
+      </div>
+
+      <!-- Products -->
+      <div class="product-grid">
+
+        <!-- Product 1 -->
+        <div class="product-card">
+          <div class="product-card__img">
+            <div class="img-placeholder">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="4" width="28" height="32" rx="2" stroke="#3D3939" stroke-width="2"/>
+                <path d="M18 40h12M24 36v4" stroke="#3D3939" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="24" cy="20" r="6" stroke="#00A099" stroke-width="2"/>
+              </svg>
+              <span>상품 이미지<br>업로드 예정</span>
+            </div>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__code">APL-GBMW</div>
+            <div class="product-card__name">이동식 TV 무빙스탠드<br>대형 화면용</div>
+            <div class="product-card__price">가격 문의<span>↗</span></div>
+            <a href="#" class="product-card__btn">상세보기</a>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+          <div class="product-card__img">
+            <div class="img-placeholder">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6" y="8" width="22" height="16" rx="1.5" stroke="#3D3939" stroke-width="2"/>
+                <path d="M12 30h10M17 24v6" stroke="#3D3939" stroke-width="2" stroke-linecap="round"/>
+                <path d="M30 20h8v6" stroke="#00A099" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>상품 이미지<br>업로드 예정</span>
+            </div>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__code">APL-C011</div>
+            <div class="product-card__name">싱글 클램프형<br>모니터암</div>
+            <div class="product-card__price">가격 문의<span>↗</span></div>
+            <a href="#" class="product-card__btn">상세보기</a>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="product-card__img">
+            <div class="img-placeholder">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="10" width="18" height="12" rx="1" stroke="#3D3939" stroke-width="2"/>
+                <rect x="26" y="10" width="18" height="12" rx="1" stroke="#3D3939" stroke-width="2"/>
+                <path d="M24 28v10M18 38h12" stroke="#00A099" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>상품 이미지<br>업로드 예정</span>
+            </div>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__code">APL-C024</div>
+            <div class="product-card__name">듀얼 클램프형<br>모니터암</div>
+            <div class="product-card__price">가격 문의<span>↗</span></div>
+            <a href="#" class="product-card__btn">상세보기</a>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+          <div class="product-card__img">
+            <div class="img-placeholder">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="10" width="32" height="20" rx="1.5" stroke="#3D3939" stroke-width="2"/>
+                <path d="M4 10h40" stroke="#3D3939" stroke-width="2" stroke-linecap="round"/>
+                <path d="M14 38h20" stroke="#00A099" stroke-width="2" stroke-linecap="round"/>
+                <path d="M24 30v8" stroke="#00A099" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>상품 이미지<br>업로드 예정</span>
+            </div>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__code">APL-B01</div>
+            <div class="product-card__name">TV 벽걸이 브라켓<br>각도 조절형</div>
+            <div class="product-card__price">가격 문의<span>↗</span></div>
+            <a href="#" class="product-card__btn">상세보기</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TRUST ========== -->
+  <section class="trust">
+    <div class="container">
+      <div class="trust__grid">
+        <div class="trust__item">
+          <!-- 실제 수치로 교체해주세요 -->
+          <div class="trust__number">300<span style="font-size:40px">+</span></div>
+          <div class="trust__desc">전문 거치 솔루션</div>
+        </div>
+        <div class="trust__item">
+          <!-- 실제 거래 기업 수로 교체해주세요 -->
+          <div class="trust__number">XXX<span style="font-size:40px">+</span></div>
+          <div class="trust__desc">거래 기업</div>
+        </div>
+        <div class="trust__item">
+          <!-- 실제 평점으로 교체해주세요 -->
+          <div class="trust__number">4.X<span style="font-size:36px">★</span></div>
+          <div class="trust__desc">고객 평점</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== B2B BANNER ========== -->
+  <section class="b2b" id="b2b">
+    <div class="b2b__watermark" aria-hidden="true">B2B</div>
+    <div class="b2b__inner">
+      <div class="b2b__left">
+        <p class="eyebrow b2b__eyebrow" style="--teal:#00A099">기업 구매 담당자이신가요</p>
+        <h2 class="b2b__title">
+          SMARTER<br>WORK.
+        </h2>
+        <ul class="b2b__features">
+          <li class="b2b__feature">견적서 즉시 발행 가능</li>
+          <li class="b2b__feature">카탈로그 PDF 다운로드</li>
+          <li class="b2b__feature">대량 구매 할인 협의</li>
+          <li class="b2b__feature">세금계산서 발행</li>
+        </ul>
+      </div>
+      <div class="b2b__right">
+        <a href="mailto:contact@ld-networks.co.kr" class="btn btn--teal">견적 요청하기 →</a>
+        <a href="#" class="btn btn--outline-light">카탈로그 다운로드</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+
+        <div class="footer__brand">
+          <a href="/" class="logo" aria-label="LDL MOUNT 홈">
+            <span class="logo__ldl">LDL</span>
+            <span class="logo__mount">MOUNT</span>
+          </a>
+          <p>
+            주식회사 엘디네트웍스<br>
+            Stronger Spaces.<br>
+            Smarter Work.<br>
+            Built to Last.
+          </p>
+        </div>
+
+        <div class="footer__col">
+          <h4>상품</h4>
+          <ul>
+            <li><a href="#">이동식 TV스탠드</a></li>
+            <li><a href="#">모니터암</a></li>
+            <li><a href="#">벽걸이 브라켓</a></li>
+            <li><a href="#">프로젝터 마운트</a></li>
+            <li><a href="#">태블릿 거치대</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4>솔루션</h4>
+          <ul>
+            <li><a href="#">1인 사무 세팅</a></li>
+            <li><a href="#">관제 / 멀티 모니터</a></li>
+            <li><a href="#">게이밍</a></li>
+            <li><a href="#">회의실 / 강의실</a></li>
+            <li><a href="#">홈오피스</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4>고객 지원</h4>
+          <ul>
+            <li><a href="#b2b">B2B 견적 요청</a></li>
+            <li><a href="#">카탈로그 다운로드</a></li>
+            <li><a href="#">설치 가이드</a></li>
+            <li><a href="#">자주 묻는 질문</a></li>
+            <li><a href="#">이용약관</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">
+          © 2025 주식회사 엘디네트웍스. All rights reserved.
+        </p>
+        <p class="footer__tagline">Stronger Spaces. Smarter Work. Built to Last.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    // Mobile menu toggle
+    function toggleMenu() {
+      const drawer = document.getElementById('nav-drawer');
+      drawer.classList.toggle('open');
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      const drawer = document.getElementById('nav-drawer');
+      const hamburger = document.querySelector('.hamburger');
+      if (!drawer.contains(e.target) && !hamburger.contains(e.target)) {
+        drawer.classList.remove('open');
+      }
+    });
+
+    // Tab switching
+    function setTab(el) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    // Nav scroll effect
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 40) {
+        nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.10)';
+      } else {
+        nav.style.boxShadow = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
