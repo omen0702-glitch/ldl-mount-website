@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>상품 찾기 — LDL MOUNT</title>
+  <meta name="description" content="4단계 질문으로 내 환경에 딱 맞는 거치 솔루션을 찾아드립니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .wz-section { background: var(--surface); padding: 48px 0 100px; }
+    .wz-center { display: flex; justify-content: center; }
+    .wz-opt__icon { color: var(--charcoal); }
+    .wz-opt:hover .wz-opt__icon { color: var(--teal); }
+    .wz-opt__icon svg { width: 24px; height: 24px; transition: color var(--ease); }
+    .compare-float { position: fixed; bottom: 24px; right: 24px; z-index: 100; display: none; }
+    .compare-float.show { display: block; }
+    .compare-float-btn { display: flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--teal); color: var(--white); border: none; cursor: pointer; font-size: 14px; font-weight: 600; font-family: var(--font-display); letter-spacing: .06em; text-transform: uppercase; box-shadow: 0 8px 24px rgba(0,160,153,.35); transition: background var(--ease); }
+    .compare-float-btn:hover { background: var(--teal-dk); }
+    .compare-float-count { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: var(--white); color: var(--teal); font-size: 12px; font-weight: 700; border-radius: 50%; }
+    .wz-prod-card.added { border-color: var(--teal) !important; }
+    .wz-prod-compare { padding: 6px 14px; background: transparent; border: 1.5px solid rgba(0,0,0,.1); font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; font-family: var(--font-body); color: var(--gray); transition: all var(--ease); }
+    .wz-prod-compare:hover { border-color: var(--teal); color: var(--teal); }
+    .wz-prod-compare.added { background: rgba(0,160,153,.08); border-color: var(--teal); color: var(--teal); }
+    .result-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--surface); }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="logo" aria-label="LDL MOUNT 홈">
+      <img src="logo.png" alt="LDL MOUNT" class="logo__img">
+    </a>
+    <ul class="nav__menu" role="list">
+      <li><a href="wizard.html" style="color:var(--teal)">솔루션별 찾기</a></li>
+      <li><a href="products.html">상품 카테고리</a></li>
+      <li><a href="b2b.html">B2B 기업구매</a></li>
+    </ul>
+    <a href="b2b.html#b2b-form" class="btn btn--teal nav__cta">견적 요청 ↗</a>
+    <button class="hamburger" aria-label="메뉴 열기" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav__drawer" id="nav-drawer" role="navigation">
+  <a href="wizard.html" onclick="toggleMenu()">솔루션별 찾기</a>
+  <a href="products.html" onclick="toggleMenu()">상품 카테고리</a>
+  <a href="b2b.html" onclick="toggleMenu()">B2B 기업구매</a>
+  <a href="b2b.html#b2b-form" class="btn btn--teal" onclick="toggleMenu()">견적 요청 ↗</a>
+</div>
+
+<div class="page-wrap">
+
+  <section class="inner-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="경로">
+        <a href="index.html">홈</a>
+        <span>›</span>
+        <span>스마트 상품 찾기</span>
+      </nav>
+      <p class="inner-hero__eyebrow">스마트 상품 찾기</p>
+      <h1 class="inner-hero__title">내게 딱 맞는<br>거치 솔루션</h1>
+      <p class="inner-hero__sub">4단계 질문으로 300여 가지 상품 중 최적을 찾아드립니다</p>
+    </div>
+  </section>
+
+  <section class="wz-section">
+    <div class="container">
+      <div class="wz-center">
+        <div class="wz-card">
+          <div class="wz-progress-track">
+            <div class="wz-progress-bar" id="wz-prog" style="width:20%"></div>
+          </div>
+          <div id="wz-content"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="logo" aria-label="LDL MOUNT 홈">
+          <img src="logo.png" alt="LDL MOUNT" class="logo__img logo__img--footer">
+        </a>
+        <p>주식회사 엘디네트웍스<br>Stronger Spaces.<br>Smarter Work.<br>Built to Last.</p>
+      </div>
+      <div class="footer__col">
+        <h4>상품</h4>
+        <ul>
+          <li><a href="products.html?cat=tvstand">이동식 TV스탠드</a></li>
+          <li><a href="products.html?cat=monitor">모니터암</a></li>
+          <li><a href="products.html?cat=wall">벽걸이 브라켓</a></li>
+          <li><a href="products.html?cat=projector">프로젝터 마운트</a></li>
+          <li><a href="products.html?cat=tablet">태블릿 거치대</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>솔루션</h4>
+        <ul>
+          <li><a href="wizard.html">1인 사무 세팅</a></li>
+          <li><a href="wizard.html">관제 / 멀티 모니터</a></li>
+          <li><a href="wizard.html">게이밍</a></li>
+          <li><a href="wizard.html">회의실 / 강의실</a></li>
+          <li><a href="wizard.html">홈오피스</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>고객 지원</h4>
+        <ul>
+          <li><a href="b2b.html#b2b-form">B2B 견적 요청</a></li>
+          <li><a href="b2b.html#catalog">카탈로그 다운로드</a></li>
+          <li><a href="b2b.html#faq">자주 묻는 질문</a></li>
+          <li><a href="#">이용약관</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2025 주식회사 엘디네트웍스. All rights reserved.</p>
+      <p class="footer__tagline">Stronger Spaces. Smarter Work. Built to Last.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="compare-float" id="compare-float">
+  <button class="compare-float-btn" onclick="goCompare()">
+    <span class="compare-float-count" id="compare-count">0</span>
+    상품 비교하기 →
+  </button>
+</div>
+
+<script>
+function toggleMenu() {
+  document.getElementById('nav-drawer').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  const drawer = document.getElementById('nav-drawer');
+  const hamburger = document.querySelector('.hamburger');
+  if (drawer && hamburger && !drawer.contains(e.target) && !hamburger.contains(e.target)) {
+    drawer.classList.remove('open');
+  }
+});
+const nav = document.querySelector('.nav');
+window.addEventListener('scroll', function() {
+  nav.style.boxShadow = window.scrollY > 40 ? '0 2px 20px rgba(0,0,0,.10)' : 'none';
+});
+
+const ICONS = {
+  monitor: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4"/></svg>`,
+  tv: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="1"/><path d="M8 22h8"/></svg>`,
+  proj: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="8" width="14" height="9" rx="1"/><circle cx="19" cy="12" r="2.5"/><path d="M17 8V6M8 8V5"/></svg>`,
+  tablet: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="2" width="12" height="20" rx="1.5"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg>`,
+  single: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="5" width="16" height="11" rx="1"/><path d="M9 20h6M12 16v4"/></svg>`,
+  dual: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="1" y="6" width="10" height="8" rx="1"/><rect x="13" y="6" width="10" height="8" rx="1"/><path d="M4 19h16"/></svg>`,
+  multi: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="1" y="7" width="7" height="6" rx="1"/><rect x="9" y="7" width="7" height="6" rx="1"/><rect x="17" y="7" width="6" height="6" rx="1"/><path d="M4 17h16"/></svg>`,
+  desk: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="9" width="20" height="3" rx="0.5"/><path d="M6 12v7M18 12v7M6 17h12"/></svg>`,
+  wall: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="3" x2="4" y2="21" stroke-width="2.5"/><path d="M4 10h9m0-3v6"/></svg>`,
+  moving: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="3" width="14" height="14" rx="1"/><line x1="12" y1="17" x2="12" y2="20"/><line x1="7" y1="20" x2="17" y2="20"/><circle cx="8" cy="21.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="16" cy="21.5" r="1.5" fill="currentColor" stroke="none"/></svg>`,
+  floor: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="3" width="14" height="14" rx="1"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="5" y1="21" x2="19" y2="21"/></svg>`,
+  wallbracket: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="3" x2="3" y2="21" stroke-width="2.5"/><rect x="6" y="7" width="14" height="10" rx="1"/><path d="M3 12h3"/></svg>`,
+  s27: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="8" y="7" width="8" height="10" rx="1"/><path d="M10 21h4M12 17v4"/></svg>`,
+  s32: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="6" width="14" height="11" rx="1"/><path d="M9 21h6M12 17v4"/></svg>`,
+  s43: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="5" width="20" height="12" rx="1"/><path d="M8 21h8M12 17v4"/></svg>`,
+  gaming: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="1" y="5" width="22" height="13" rx="1"/><path d="M15 11h4M17 9v4M6 11h2M7 10v2"/></svg>`,
+};
+
+const STEPS = {
+  q1: {
+    label: '1단계 · 최대 4단계', progress: 20,
+    q: '무엇을 거치하실 건가요?', sub: '거치할 기기를 선택해주세요', cols: 2,
+    opts: [
+      { label: '모니터 / PC 화면', desc: '싱글 · 듀얼 · 트리플', next: 'q2m', icon: 'monitor' },
+      { label: 'TV (대형 화면)', desc: '50인치 이상 대화면', next: 'q2tv', icon: 'tv' },
+      { label: '프로젝터', desc: '천장 · 벽면 설치', next: 'r_proj', icon: 'proj' },
+      { label: '태블릿 / iPad', desc: '거치대 · 스탠드', next: 'r_tab', icon: 'tablet' },
+    ]
+  },
+  q2m: {
+    label: '2단계 · 최대 4단계', progress: 42,
+    q: '화면이 몇 개인가요?', sub: '동시에 사용할 모니터 수를 선택해주세요', cols: 1,
+    opts: [
+      { label: '1개 — 싱글 모니터', desc: '일반 사무 · 홈오피스', next: 'q3m', icon: 'single' },
+      { label: '2개 — 듀얼 모니터', desc: '멀티태스킹 · 전문가용', next: 'q3d', icon: 'dual' },
+      { label: '3개 이상 — 멀티 모니터', desc: '관제 · 트레이딩 · 방송', next: 'r_multi', icon: 'multi' },
+    ]
+  },
+  q2tv: {
+    label: '2단계 · 최대 3단계', progress: 55,
+    q: 'TV 설치 방식은 어떻게 할 건가요?', sub: '공간 활용 목적에 맞게 선택해주세요', cols: 1,
+    opts: [
+      { label: '이동식 — 필요할 때 옮기고 싶어요', desc: '회의실 · 강의실 · 매장', next: 'r_tv_move', icon: 'moving' },
+      { label: '벽에 고정 — 벽면에 달고 싶어요', desc: '거실 · 사무실 고정 설치', next: 'r_tv_wall', icon: 'wallbracket' },
+      { label: '바닥 고정 — 한 자리에 세울게요', desc: '전시 · 사이니지 · 행사', next: 'r_tv_floor', icon: 'floor' },
+    ]
+  },
+  q3m: {
+    label: '3단계 · 최대 4단계', progress: 65,
+    q: '어디에 설치하실 건가요?', sub: '설치 환경을 선택해주세요', cols: 2,
+    opts: [
+      { label: '책상 위', desc: '클램프 · 홀 방식 고정', next: 'q4m', icon: 'desk' },
+      { label: '벽면에', desc: '벽걸이 방식 고정', next: 'r_wall_single', icon: 'wall' },
+    ]
+  },
+  q3d: {
+    label: '3단계 · 최대 3단계', progress: 70,
+    q: '어디에 설치하실 건가요?', sub: '설치 환경을 선택해주세요', cols: 2,
+    opts: [
+      { label: '책상 위', desc: '클램프 · 홀 방식 고정', next: 'r_dual_desk', icon: 'desk' },
+      { label: '벽면에', desc: '벽걸이 방식 고정', next: 'r_dual_wall', icon: 'wall' },
+    ]
+  },
+  q4m: {
+    label: '4단계 · 최대 4단계', progress: 85,
+    q: '모니터 화면 크기는 얼마인가요?', sub: '크기에 따라 수용 무게와 암 길이가 달라집니다', cols: 2,
+    opts: [
+      { label: '27인치 이하', desc: '일반 사무용 모니터', next: 'r_s_small', icon: 's27' },
+      { label: '27 ~ 32인치', desc: '광시야각 · 4K 모니터', next: 'r_s_mid', icon: 's32' },
+      { label: '32 ~ 43인치', desc: '대형 업무용 모니터', next: 'r_s_large', icon: 's43' },
+      { label: '43인치 이상', desc: '게이밍 · 초대형 모니터', next: 'r_gaming', icon: 'gaming' },
+    ]
+  },
+};
+
+const RESULTS = {
+  r_s_small: {
+    tag: '27인치 이하 싱글 모니터',
+    products: [
+      { code:'APL-GS501', name:'매커니컬 스프링 모니터암', specs:['17~32인치','최대 9kg','클램프/홀 겸용'], price:'₩25,500', best:true },
+      { code:'APL-BC01B', name:'이지밸런스 싱글 모니터암', specs:['17~32인치','최대 9kg','높낮이 자동조절'], price:'가격 문의', best:false },
+      { code:'APL-C011', name:'클램프형 싱글 모니터암', specs:['17~32인치','최대 8kg','클램프 전용'], price:'가격 문의', best:false },
+    ]
+  },
+  r_s_mid: {
+    tag: '27~32인치 싱글 모니터',
+    products: [
+      { code:'APL-GS501', name:'매커니컬 스프링 모니터암', specs:['17~32인치','최대 9kg','클램프/홀 겸용'], price:'₩25,500', best:true },
+      { code:'APL-GS681', name:'슬림형 싱글 모니터암', specs:['17~32인치','최대 9kg','슬림 디자인'], price:'가격 문의', best:false },
+      { code:'APL-T67W', name:'높이조절 싱글 모니터암', specs:['17~32인치','최대 8kg','높이 자유조절'], price:'가격 문의', best:false },
+    ]
+  },
+  r_s_large: {
+    tag: '32~43인치 고중량 싱글암',
+    products: [
+      { code:'APL-GS521', name:'울트라 고중량 싱글 모니터암', specs:['17~49인치','최대 18kg','클램프/홀 겸용'], price:'가격 문의', best:true },
+      { code:'APL-GS771', name:'고중량 싱글 모니터암', specs:['17~35인치','최대 11kg','안정 설계'], price:'가격 문의', best:false },
+      { code:'APL-GS541', name:'게이밍 고중량 싱글암', specs:['27~45인치','최대 14kg','게이밍 최적화'], price:'₩68,000', best:false },
+    ]
+  },
+  r_gaming: {
+    tag: '43인치 이상 게이밍 · 대화면',
+    products: [
+      { code:'APL-GS541', name:'고중량 게이밍 싱글 모니터암', specs:['27~45인치','최대 14kg','커브드 12kg 지원'], price:'₩68,000', best:true },
+      { code:'APL-GS521', name:'울트라 고중량 싱글 모니터암', specs:['17~49인치','최대 18kg','초대형 지원'], price:'가격 문의', best:false },
+      { code:'APL-GS551', name:'게이밍 듀얼 대화면 암', specs:['27~45인치 각','최대 14kg 각','게이밍 듀얼'], price:'가격 문의', best:false },
+    ]
+  },
+  r_wall_single: {
+    tag: '벽걸이 싱글 모니터 브라켓',
+    products: [
+      { code:'APL-WF01', name:'벽걸이 풀모션 모니터 브라켓', specs:['15~32인치','최대 15kg','상하좌우 조절'], price:'가격 문의', best:true },
+      { code:'APL-WT01', name:'벽걸이 틸트 모니터 브라켓', specs:['15~32인치','최대 15kg','상하 기울기'], price:'가격 문의', best:false },
+      { code:'APL-WF11', name:'벽걸이 슬림 고정 브라켓', specs:['15~32인치','최대 20kg','초슬림 밀착형'], price:'가격 문의', best:false },
+    ]
+  },
+  r_dual_desk: {
+    tag: '듀얼 모니터암 — 책상형',
+    products: [
+      { code:'APL-C024', name:'클램프/홀 겸용 듀얼 모니터암', specs:['13~32인치 각','각 최대 8kg','클램프/홀 겸용'], price:'₩45,000', best:true },
+      { code:'APL-C02V', name:'세로배치 듀얼 모니터암', specs:['13~27인치 각','각 최대 8kg','상하 배치'], price:'가격 문의', best:false },
+      { code:'APL-SHB', name:'슬라이딩 듀얼 모니터암', specs:['15~32인치 각','각 최대 9kg','슬라이딩 방식'], price:'가격 문의', best:false },
+    ]
+  },
+  r_dual_wall: {
+    tag: '벽걸이 듀얼 브라켓',
+    products: [
+      { code:'APL-SHB', name:'슬라이딩 듀얼 벽걸이 암', specs:['15~32인치 각','각 최대 9kg','슬라이딩'], price:'가격 문의', best:true },
+      { code:'APL-WD01', name:'벽걸이 듀얼 브라켓', specs:['15~27인치 각','각 최대 8kg','고정형'], price:'가격 문의', best:false },
+    ]
+  },
+  r_multi: {
+    tag: '멀티 모니터 (3대 이상)',
+    products: [
+      { code:'APL-T3', name:'트리플 모니터암', specs:['15~27인치 각','각 최대 6kg','3화면 동시'], price:'가격 문의', best:true },
+      { code:'APL-PB-P3', name:'폴형 트리플 모니터암', specs:['15~27인치 각','각 최대 8kg','폴 방식 확장'], price:'가격 문의', best:false },
+      { code:'APL-GS551', name:'대화면 듀얼+싱글 조합', specs:['27~45인치','각 최대 14kg','관제 최적화'], price:'가격 문의', best:false },
+    ]
+  },
+  r_tv_move: {
+    tag: '이동식 TV 무빙스탠드',
+    products: [
+      { code:'APL-GBMW', name:'이동식 TV 무빙스탠드 대형', specs:['최대 86인치','VESA 표준','잠금 바퀴'], price:'가격 문의', best:true },
+      { code:'APL-LBM', name:'이동식 TV 무빙스탠드 중형', specs:['최대 65인치','VESA 표준','경량형'], price:'가격 문의', best:false },
+      { code:'APL-EB2', name:'전자칠판 이동 스탠드', specs:['대형 터치패널','높이 조절','이동형'], price:'가격 문의', best:false },
+    ]
+  },
+  r_tv_wall: {
+    tag: 'TV 벽걸이 브라켓',
+    products: [
+      { code:'APL-64TVD', name:'TV 벽걸이 풀모션 브라켓', specs:['최대 100인치','좌우 스윙','상하 기울기'], price:'가격 문의', best:true },
+      { code:'APL-B01', name:'TV 벽걸이 틸트 브라켓', specs:['최대 65인치','초슬림 밀착','상하 조절'], price:'가격 문의', best:false },
+      { code:'APL-WF32', name:'대형 TV 풀모션 브라켓', specs:['75인치 이상','최대 무게 60kg','이중 암'], price:'가격 문의', best:false },
+    ]
+  },
+  r_tv_floor: {
+    tag: '바닥 고정형 TV 스탠드',
+    products: [
+      { code:'APL-VBM', name:'바닥 고정형 TV 스탠드', specs:['최대 86인치','VESA 표준','고정형'], price:'가격 문의', best:true },
+      { code:'APL-SF01', name:'이젤형 TV 스탠드', specs:['최대 65인치','A형 스탠드','심플 디자인'], price:'가격 문의', best:false },
+      { code:'APL-EB2', name:'대형 전시용 바닥 스탠드', specs:['대화면 전용','전시 최적화','높이 조절'], price:'가격 문의', best:false },
+    ]
+  },
+  r_proj: {
+    tag: '프로젝터 브라켓',
+    products: [
+      { code:'APL-PB11S', name:'천장형 프로젝터 브라켓', specs:['범용 마운트','높낮이 조절','천장/벽면'], price:'가격 문의', best:true },
+      { code:'APL-PB01', name:'벽면형 프로젝터 브라켓', specs:['벽면 전용','각도 조절','경량형'], price:'가격 문의', best:false },
+      { code:'APL-PB21', name:'프로젝터 바닥 스탠드', specs:['이동 가능','높이 조절','바닥형'], price:'가격 문의', best:false },
+    ]
+  },
+  r_tab: {
+    tag: '태블릿 거치대',
+    products: [
+      { code:'APL-TAB01', name:'클램프형 태블릿 거치대', specs:['iPad 전 기종','360° 회전','책상 클램프'], price:'가격 문의', best:true },
+      { code:'APL-TAB02', name:'스탠드형 태블릿 거치대', specs:['iPad 전 기종','각도 조절','바닥 독립형'], price:'가격 문의', best:false },
+      { code:'APL-TAB03', name:'벽걸이 태블릿 브라켓', specs:['키오스크 전용','고정형','안내 패널용'], price:'가격 문의', best:false },
+    ]
+  },
+};
+
+let history = [];
+let compareSet = new Set(JSON.parse(localStorage.getItem('ldl_compare') || '[]'));
+
+function saveCompare() {
+  localStorage.setItem('ldl_compare', JSON.stringify([...compareSet]));
+}
+
+function updateCompareFloat() {
+  const count = compareSet.size;
+  const el = document.getElementById('compare-float');
+  const ct = document.getElementById('compare-count');
+  if (count > 0) {
+    el.classList.add('show');
+    ct.textContent = count;
+  } else {
+    el.classList.remove('show');
+  }
+}
+
+function addToCompare(code, btn) {
+  if (compareSet.has(code)) {
+    compareSet.delete(code);
+    btn.textContent = '비교 추가';
+    btn.classList.remove('added');
+    btn.closest('.wz-prod-card').classList.remove('added');
+  } else {
+    if (compareSet.size >= 3) {
+      alert('최대 3개까지 비교할 수 있습니다. 기존 상품을 제거 후 추가해주세요.');
+      return;
+    }
+    compareSet.add(code);
+    btn.textContent = '✓ 추가됨';
+    btn.classList.add('added');
+    btn.closest('.wz-prod-card').classList.add('added');
+  }
+  saveCompare();
+  updateCompareFloat();
+}
+
+function goCompare() {
+  window.location.href = 'comparison.html';
+}
+
+function go(id) {
+  history.push(id);
+  render(id);
+  window.scrollTo({ top: 200, behavior: 'smooth' });
+}
+
+function back() {
+  if (history.length > 1) {
+    history.pop();
+    render(history[history.length - 1]);
+    window.scrollTo({ top: 200, behavior: 'smooth' });
+  }
+}
+
+function restart() {
+  history = [];
+  go('q1');
+}
+
+function iconSVG(name) {
+  return ICONS[name] || ICONS.monitor;
+}
+
+function render(id) {
+  document.getElementById('wz-prog').style.width = (STEPS[id] ? STEPS[id].progress : 100) + '%';
+  const content = document.getElementById('wz-content');
+
+  if (STEPS[id]) {
+    const s = STEPS[id];
+    const optsHtml = s.opts.map(o => `
+      <button class="wz-opt" onclick="go('${o.next}')">
+        <div class="wz-opt__icon">${iconSVG(o.icon)}</div>
+        <div>
+          <div class="wz-opt__name">${o.label}</div>
+          <div class="wz-opt__desc">${o.desc}</div>
+        </div>
+      </button>`).join('');
+
+    content.innerHTML = `
+      <div class="wz-step-label">${s.label}</div>
+      <h2 class="wz-question">${s.q}</h2>
+      <p class="wz-sub">${s.sub}</p>
+      <div class="wz-opts wz-opts--${s.cols}">${optsHtml}</div>
+      ${history.length > 1 ? `<button class="wz-back" onclick="back()">← 이전 단계</button>` : ''}
+    `;
+  } else if (RESULTS[id]) {
+    const r = RESULTS[id];
+    document.getElementById('wz-prog').style.width = '100%';
+
+    const cardsHtml = r.products.map(p => `
+      <div class="wz-prod-card ${compareSet.has(p.code) ? 'added' : ''}" style="position:relative">
+        ${p.best ? `<div style="position:absolute;top:0;left:0;font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:.08em;background:var(--teal);color:#fff;padding:3px 10px;text-transform:uppercase">1순위 추천</div>` : ''}
+        <div class="wz-prod-img" style="${p.best ? 'margin-top:22px' : ''}">
+          ${iconSVG('monitor')}
+        </div>
+        <div style="flex:1">
+          <div class="wz-prod-code">${p.code}</div>
+          <div class="wz-prod-name">${p.name}</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px">
+            ${p.specs.map(s => `<span style="font-size:11px;padding:2px 8px;background:var(--surface);color:var(--gray)">${s}</span>`).join('')}
+          </div>
+          <div class="wz-prod-price">${p.price}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex-shrink:0">
+          <a href="product-detail.html?code=${p.code}" class="btn btn--dark" style="font-size:11px;padding:7px 14px;white-space:nowrap">상세보기</a>
+          <button class="wz-prod-compare ${compareSet.has(p.code) ? 'added' : ''}" onclick="addToCompare('${p.code}',this)">${compareSet.has(p.code) ? '✓ 추가됨' : '비교 추가'}</button>
+        </div>
+      </div>`).join('');
+
+    content.innerHTML = `
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+        <span class="wz-step-label" style="margin:0">추천 완료</span>
+        <span style="font-size:11px;padding:2px 10px;background:rgba(0,160,153,.1);color:var(--teal)">${r.tag}</span>
+      </div>
+      <h2 class="wz-question" style="font-size:18px;margin-bottom:4px">딱 맞는 상품을 찾았습니다</h2>
+      <p class="wz-sub" style="margin-bottom:20px">첫 번째 상품이 1순위 추천입니다. 비교 추가 후 상세 스펙을 나란히 비교해보세요.</p>
+      ${cardsHtml}
+      <div class="result-actions">
+        <button class="btn btn--outline" onclick="restart()">← 처음부터</button>
+        <a href="products.html" class="btn btn--outline">전체 상품 보기</a>
+        ${compareSet.size >= 2 ? `<button class="btn btn--teal" onclick="goCompare()">선택 상품 비교하기 →</button>` : ''}
+      </div>
+    `;
+  }
+}
+
+updateCompareFloat();
+go('q1');
+</script>
+
+</body>
+</html>
