@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>상품 카테고리 — LDL MOUNT</title>
+  <meta name="description" content="이동식 TV스탠드, 모니터암, 벽걸이 브라켓 등 300가지 이상의 LDL MOUNT 거치 솔루션. 스펙 필터로 내게 맞는 상품을 찾아보세요.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .sort-select {
+      padding: 7px 12px; border: 1px solid rgba(0,0,0,.12);
+      font-size: 13px; color: var(--charcoal); background: var(--white);
+      font-family: var(--font-body); cursor: pointer;
+    }
+    .img-ph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+    .img-ph svg { width:52px; height:52px; opacity:.12; }
+    @media(max-width:768px){
+      .products-layout{ grid-template-columns:1fr; }
+      .filter-sidebar{ position:static; }
+      .filter-toggle-btn{ display:flex !important; }
+      .filter-sidebar-inner{ display:none; }
+      .filter-sidebar-inner.mobile-open{ display:block; }
+      .products-grid{ grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:480px){ .products-grid{ grid-template-columns:1fr; } }
+    .filter-toggle-btn{
+      display:none; width:100%; padding:10px 14px;
+      background:var(--charcoal); color:var(--white);
+      border:none; font-family:var(--font-display);
+      font-size:13px; font-weight:700; letter-spacing:.06em;
+      text-transform:uppercase; cursor:pointer; margin-bottom:12px;
+      align-items:center; justify-content:space-between;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="logo" aria-label="LDL MOUNT 홈">
+      <img src="logo.png" alt="LDL MOUNT" class="logo__img">
+    </a>
+    <ul class="nav__menu" role="list">
+      <li><a href="wizard.html">솔루션별 찾기</a></li>
+      <li><a href="products.html" style="color:var(--teal)">상품 카테고리</a></li>
+      <li><a href="b2b.html">B2B 기업구매</a></li>
+    </ul>
+    <a href="b2b.html#b2b-form" class="btn btn--teal nav__cta">견적 요청 ↗</a>
+    <button class="hamburger" aria-label="메뉴 열기" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav__drawer" id="nav-drawer" role="navigation">
+  <a href="wizard.html" onclick="toggleMenu()">솔루션별 찾기</a>
+  <a href="products.html" onclick="toggleMenu()">상품 카테고리</a>
+  <a href="b2b.html" onclick="toggleMenu()">B2B 기업구매</a>
+  <a href="b2b.html#b2b-form" class="btn btn--teal" onclick="toggleMenu()">견적 요청 ↗</a>
+</div>
+
+<div class="page-wrap">
+  <section class="inner-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="경로">
+        <a href="index.html">홈</a><span>›</span><span>상품 카테고리</span>
+      </nav>
+      <p class="inner-hero__eyebrow">전체 상품</p>
+      <h1 class="inner-hero__title">상품 카테고리</h1>
+      <p class="inner-hero__sub">스펙 필터로 내 환경에 맞는 상품을 바로 찾아보세요 · 총 <span id="total-ct">12</span>개 상품</p>
+    </div>
+  </section>
+
+  <section class="page-section page-section--gray">
+    <div class="container">
+
+      <button class="filter-toggle-btn" id="filter-toggle" onclick="toggleFilterMobile()">
+        <span>필터</span>
+        <span id="filter-toggle-ct"></span>
+      </button>
+
+      <div class="products-layout">
+
+        <!-- 필터 사이드바 -->
+        <aside class="filter-sidebar" aria-label="상품 필터">
+          <div class="filter-sidebar-inner" id="filter-sidebar-inner">
+            <div class="filter-hd">
+              <h3>필터</h3>
+              <button class="filter-reset" id="reset-btn" onclick="clearAll()">초기화</button>
+            </div>
+            <div id="filter-accordion"></div>
+            <div style="margin-top:16px;padding:12px 14px;background:var(--white);border:1px solid rgba(0,0,0,.07)">
+              <p style="font-size:12px;color:var(--gray);line-height:1.6">
+                상품을 못 찾으셨나요?<br>
+                <a href="wizard.html" style="color:var(--teal);font-weight:500">스마트 찾기 →</a>
+              </p>
+            </div>
+          </div>
+        </aside>
+
+        <!-- 상품 목록 -->
+        <main class="products-main" aria-label="상품 목록">
+          <div class="products-toolbar">
+            <span class="products-count"><b id="prod-count">0</b>개 상품</span>
+            <select class="sort-select" onchange="sortProducts(this.value)" aria-label="정렬 방식">
+              <option value="default">기본순</option>
+              <option value="price-asc">낮은 가격순</option>
+              <option value="price-desc">높은 가격순</option>
+              <option value="name">상품명순</option>
+            </select>
+          </div>
+          <div class="chips-row" id="chips-row"></div>
+          <div class="products-grid" id="products-grid"></div>
+        </main>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="logo" aria-label="LDL MOUNT 홈">
+          <img src="logo.png" alt="LDL MOUNT" class="logo__img logo__img--footer">
+        </a>
+        <p>주식회사 엘디네트웍스<br>Stronger Spaces. Smarter Work.<br>Built to Last.</p>
+      </div>
+      <div class="footer__col">
+        <h4>상품</h4>
+        <ul>
+          <li><a href="products.html?cat=tvstand">이동식 TV스탠드</a></li>
+          <li><a href="products.html?cat=monitor">모니터암</a></li>
+          <li><a href="products.html?cat=wall">벽걸이 브라켓</a></li>
+          <li><a href="products.html?cat=projector">프로젝터 마운트</a></li>
+          <li><a href="products.html?cat=tablet">태블릿 거치대</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>솔루션</h4>
+        <ul>
+          <li><a href="wizard.html">1인 사무 세팅</a></li>
+          <li><a href="wizard.html">관제 / 멀티 모니터</a></li>
+          <li><a href="wizard.html">게이밍</a></li>
+          <li><a href="wizard.html">회의실 / 강의실</a></li>
+          <li><a href="wizard.html">홈오피스</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>고객 지원</h4>
+        <ul>
+          <li><a href="b2b.html#b2b-form">B2B 견적 요청</a></li>
+          <li><a href="b2b.html#catalog">카탈로그 다운로드</a></li>
+          <li><a href="b2b.html#faq">자주 묻는 질문</a></li>
+          <li><a href="#">이용약관</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2025 주식회사 엘디네트웍스. All rights reserved.</p>
+      <p class="footer__tagline">Stronger Spaces. Smarter Work. Built to Last.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── NAV ── */
+function toggleMenu(){document.getElementById('nav-drawer').classList.toggle('open');}
+document.addEventListener('click',function(e){
+  const d=document.getElementById('nav-drawer'),h=document.querySelector('.hamburger');
+  if(d&&h&&!d.contains(e.target)&&!h.contains(e.target))d.classList.remove('open');
+});
+const navEl=document.querySelector('.nav');
+window.addEventListener('scroll',()=>{navEl.style.boxShadow=window.scrollY>40?'0 2px 20px rgba(0,0,0,.10)':'none';});
+
+function toggleFilterMobile(){
+  document.getElementById('filter-sidebar-inner').classList.toggle('mobile-open');
+}
+
+/* ── FILTER DATA ── */
+const FD = [
+  { id:'category', label:'상품 카테고리', open:true, type:'check', opts:[
+    {id:'monitor',label:'모니터암',count:6},
+    {id:'tvstand',label:'TV 스탠드',count:3},
+    {id:'wallbracket',label:'벽걸이 브라켓',count:2},
+    {id:'projector',label:'프로젝터 마운트',count:1},
+    {id:'tablet',label:'태블릿 거치대',count:1},
+  ]},
+  { id:'install', label:'설치 방식', open:true, type:'check', opts:[
+    {id:'clamp',label:'클램프형 (책상 집게)',count:8},
+    {id:'grommet',label:'홀/그로밋 (책상 홀)',count:7},
+    {id:'wall',label:'벽걸이 고정',count:3},
+    {id:'mobile',label:'이동식 (바퀴형)',count:3},
+    {id:'floor',label:'바닥 고정형',count:1},
+  ]},
+  { id:'size', label:'지원 화면 크기', open:true, type:'check', opts:[
+    {id:'s27',label:'27인치 이하',count:6},
+    {id:'s32',label:'27 ~ 32인치',count:7},
+    {id:'s43',label:'32 ~ 43인치',count:4},
+    {id:'s65',label:'43 ~ 65인치',count:4},
+    {id:'slarge',label:'65인치 이상',count:3},
+  ]},
+  { id:'weight', label:'수용 무게', open:false, type:'check', opts:[
+    {id:'w9',label:'9kg 이하 (표준)',count:7},
+    {id:'w15',label:'9 ~ 15kg (고중량)',count:3},
+    {id:'w20',label:'15kg 이상 (초고중량)',count:2},
+  ]},
+  { id:'screens', label:'화면 수', open:false, type:'check', opts:[
+    {id:'single',label:'싱글 (1대)',count:9},
+    {id:'dual',label:'듀얼 (2대)',count:2},
+    {id:'triple',label:'트리플 이상 (3대+)',count:1},
+  ]},
+  { id:'color', label:'색상', open:false, type:'color', opts:[
+    {id:'black',label:'블랙',color:'#1A1A1A',count:12},
+    {id:'white',label:'화이트',color:'#F0F0F0',count:4},
+    {id:'silver',label:'실버',color:'#9E9E9E',count:2},
+  ]},
+  { id:'price', label:'가격대', open:false, type:'check', opts:[
+    {id:'p3',label:'3만원 이하',count:2},
+    {id:'p7',label:'3만 ~ 7만원',count:3},
+    {id:'p15',label:'7만 ~ 15만원',count:1},
+    {id:'phigh',label:'가격 문의',count:6},
+  ]},
+];
+
+/* ── PRODUCT DATA ── */
+const PRODUCTS = [
+  { code:'APL-GS501', name:'매커니컬 스프링 모니터암', price:'₩25,500', priceVal:25500,
+    tags:['17~32인치','최대 9kg','클램프/홀 겸용'],
+    f:{category:['monitor'],install:['clamp','grommet'],size:['s27','s32'],weight:['w9'],screens:['single'],color:['black','white'],price:['p3']} },
+  { code:'APL-GS681', name:'슬림형 싱글 모니터암', price:'가격 문의', priceVal:999999,
+    tags:['17~32인치','최대 9kg','슬림 디자인'],
+    f:{category:['monitor'],install:['clamp','grommet'],size:['s27','s32'],weight:['w9'],screens:['single'],color:['black','white'],price:['phigh']} },
+  { code:'APL-C024', name:'클램프/홀 겸용 듀얼 모니터암', price:'₩45,000', priceVal:45000,
+    tags:['13~32인치 각','각 최대 8kg','듀얼'],
+    f:{category:['monitor'],install:['clamp','grommet'],size:['s27','s32'],weight:['w9'],screens:['dual'],color:['black'],price:['p7']} },
+  { code:'APL-GS541', name:'고중량 게이밍 싱글 모니터암', price:'₩68,000', priceVal:68000,
+    tags:['27~45인치','최대 14kg','커브드 지원'],
+    f:{category:['monitor'],install:['clamp','grommet'],size:['s43','s65'],weight:['w15'],screens:['single'],color:['black'],price:['p7']} },
+  { code:'APL-GS521', name:'울트라 고중량 싱글 모니터암', price:'가격 문의', priceVal:999999,
+    tags:['17~49인치','최대 18kg','초고중량'],
+    f:{category:['monitor'],install:['clamp','grommet'],size:['s32','s43','s65'],weight:['w20'],screens:['single'],color:['black','white'],price:['phigh']} },
+  { code:'APL-T3', name:'트리플 모니터암', price:'가격 문의', priceVal:999999,
+    tags:['15~27인치 각','각 최대 6kg','3화면 동시'],
+    f:{category:['monitor'],install:['clamp','grommet'],size:['s27'],weight:['w9'],screens:['triple'],color:['black'],price:['phigh']} },
+  { code:'APL-GBMW', name:'이동식 TV 무빙스탠드 대형', price:'가격 문의', priceVal:999999,
+    tags:['최대 86인치','이동식','잠금 바퀴'],
+    f:{category:['tvstand'],install:['mobile'],size:['slarge'],weight:['w20'],screens:['single'],color:['black'],price:['phigh']} },
+  { code:'APL-LBM', name:'이동식 TV 무빙스탠드 중형', price:'가격 문의', priceVal:999999,
+    tags:['최대 65인치','이동식','경량형'],
+    f:{category:['tvstand'],install:['mobile'],size:['s65'],weight:['w15'],screens:['single'],color:['black'],price:['phigh']} },
+  { code:'APL-EB2', name:'전자칠판 이동 스탠드', price:'가격 문의', priceVal:999999,
+    tags:['대형 패널','높이 조절','이동형'],
+    f:{category:['tvstand'],install:['mobile'],size:['slarge'],weight:['w20'],screens:['single'],color:['black'],price:['phigh']} },
+  { code:'APL-64TVD', name:'TV 벽걸이 풀모션 브라켓', price:'가격 문의', priceVal:999999,
+    tags:['최대 100인치','좌우 스윙','상하 기울기'],
+    f:{category:['wallbracket'],install:['wall'],size:['s65','slarge'],weight:['w20'],screens:['single'],color:['black'],price:['phigh']} },
+  { code:'APL-B01', name:'TV 벽걸이 틸트 브라켓', price:'가격 문의', priceVal:999999,
+    tags:['최대 65인치','초슬림 밀착','상하 조절'],
+    f:{category:['wallbracket'],install:['wall'],size:['s65'],weight:['w15'],screens:['single'],color:['black'],price:['phigh']} },
+  { code:'APL-PB11S', name:'천장형 프로젝터 브라켓', price:'가격 문의', priceVal:999999,
+    tags:['천장/벽면 설치','높낮이 조절','범용 마운트'],
+    f:{category:['projector'],install:['wall','floor'],size:['s27'],weight:['w9'],screens:['single'],color:['black','white'],price:['phigh']} },
+  { code:'APL-TAB01', name:'클램프형 태블릿 거치대', price:'가격 문의', priceVal:999999,
+    tags:['iPad 전 기종','360° 회전','책상 클램프'],
+    f:{category:['tablet'],install:['clamp'],size:['s27'],weight:['w9'],screens:['single'],color:['black','white'],price:['phigh']} },
+];
+
+const ICONS = {
+  monitor:`<svg viewBox="0 0 48 48" fill="none" stroke="#3D3939" stroke-width="2" stroke-linecap="round"><rect x="8" y="8" width="32" height="22" rx="2"/><path d="M18 38h12M24 30v8"/></svg>`,
+  tvstand:`<svg viewBox="0 0 48 48" fill="none" stroke="#3D3939" stroke-width="2" stroke-linecap="round"><rect x="6" y="8" width="36" height="24" rx="2"/><path d="M20 40h8M24 32v8"/><circle cx="24" cy="24" r="3"/></svg>`,
+  wallbracket:`<svg viewBox="0 0 48 48" fill="none" stroke="#3D3939" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="8" y2="42" stroke-width="3"/><rect x="14" y="14" width="26" height="20" rx="1.5"/><path d="M8 24h6"/></svg>`,
+  projector:`<svg viewBox="0 0 48 48" fill="none" stroke="#3D3939" stroke-width="2" stroke-linecap="round"><rect x="8" y="16" width="24" height="16" rx="2"/><circle cx="38" cy="24" r="4"/><path d="M16 16v-6M24 16v-6"/></svg>`,
+  tablet:`<svg viewBox="0 0 48 48" fill="none" stroke="#3D3939" stroke-width="2" stroke-linecap="round"><rect x="14" y="6" width="20" height="36" rx="2.5"/><circle cx="24" cy="36" r="2" fill="#3D3939" stroke="none"/></svg>`,
+};
+
+function getIcon(cats){
+  if(cats.includes('monitor'))return ICONS.monitor;
+  if(cats.includes('tvstand'))return ICONS.tvstand;
+  if(cats.includes('wallbracket'))return ICONS.wallbracket;
+  if(cats.includes('projector'))return ICONS.projector;
+  if(cats.includes('tablet'))return ICONS.tablet;
+  return ICONS.monitor;
+}
+
+/* ── STATE ── */
+const sel = {};
+FD.forEach(g => sel[g.id] = new Set());
+const openMap = {};
+FD.forEach(g => openMap[g.id] = g.open);
+let currentSort = 'default';
+let compareSet = new Set(JSON.parse(localStorage.getItem('ldl_compare')||'[]'));
+
+/* ── URL PARAMS ── */
+function readParams(){
+  const p = new URLSearchParams(window.location.search);
+  const cat = p.get('cat');
+  const sol = p.get('sol');
+  const catMap = { monitor:'monitor',tvstand:'tvstand',wall:'wallbracket',projector:'projector',tablet:'tablet' };
+  if(cat && catMap[cat]) sel['category'].add(catMap[cat]);
+  const solMap = { office:'monitor', multi:'monitor', gaming:'monitor', meeting:'tvstand', home:'monitor' };
+  if(sol && solMap[sol]) sel['category'].add(solMap[sol]);
+}
+
+/* ── FILTER LOGIC ── */
+function isMatch(p){
+  for(const g of FD){
+    if(sel[g.id].size===0) continue;
+    const tags=p.f[g.id]||[];
+    if(![...sel[g.id]].some(id=>tags.includes(id))) return false;
+  }
+  return true;
+}
+
+function hasAny(){ return FD.some(g=>sel[g.id].size>0); }
+
+function toggleFilter(gid,oid){
+  if(sel[gid].has(oid)) sel[gid].delete(oid);
+  else sel[gid].add(oid);
+  render();
+}
+function toggleSection(gid){
+  openMap[gid]=!openMap[gid];
+  renderAccordion();
+}
+function removeChip(gid,oid){ sel[gid].delete(oid); render(); }
+function clearAll(){ FD.forEach(g=>sel[g.id].clear()); render(); }
+function sortProducts(v){ currentSort=v; render(); }
+
+/* ── COMPARE ── */
+function addCompare(code, btn){
+  if(compareSet.has(code)){
+    compareSet.delete(code);
+    btn.textContent='비교';
+    btn.style.background='';
+    btn.style.color='';
+  } else {
+    if(compareSet.size>=3){ alert('최대 3개까지 비교할 수 있습니다.'); return; }
+    compareSet.add(code);
+    btn.textContent='✓';
+    btn.style.background='var(--teal)';
+    btn.style.color='#fff';
+  }
+  localStorage.setItem('ldl_compare',JSON.stringify([...compareSet]));
+}
+
+/* ── RENDER ACCORDION ── */
+function renderAccordion(){
+  const acc=document.getElementById('filter-accordion');
+  acc.innerHTML=FD.map(g=>{
+    const cnt=sel[g.id].size;
+    const isOpen=openMap[g.id];
+    let optsHtml='';
+    if(g.type==='color'){
+      optsHtml=`<div class="filter-colors">${g.opts.map(o=>`
+        <div class="filter-color" onclick="toggleFilter('${g.id}','${o.id}')" role="button" aria-label="${o.label} 색상 필터">
+          <div class="filter-color-dot ${sel[g.id].has(o.id)?'on':''}" style="background:${o.color};${o.id==='white'?'border:1.5px solid #ddd;':''}"></div>
+          <span class="filter-color-name">${o.label}</span>
+        </div>`).join('')}</div>`;
+    } else {
+      optsHtml=g.opts.map(o=>`
+        <div class="filter-opt" onclick="toggleFilter('${g.id}','${o.id}')" role="checkbox" aria-checked="${sel[g.id].has(o.id)}">
+          <div class="filter-opt-l">
+            <div class="fchk ${sel[g.id].has(o.id)?'on':''}"></div>
+            <span class="filter-opt-name">${o.label}</span>
+          </div>
+          <span class="filter-opt-ct">${o.count}</span>
+        </div>`).join('');
+    }
+    return `<div class="filter-group">
+      <button class="filter-group-btn" onclick="toggleSection('${g.id}')" aria-expanded="${isOpen}">
+        <div class="filter-group-btn-l">
+          <span class="filter-group-name">${g.label}</span>
+          ${cnt>0?`<span class="filter-group-badge">${cnt}</span>`:''}
+        </div>
+        <span class="filter-group-icon ${isOpen?'open':''}">▾</span>
+      </button>
+      <div class="filter-body ${isOpen?'open':''}">${optsHtml}</div>
+    </div>`;
+  }).join('');
+}
+
+/* ── RENDER ── */
+function render(){
+  renderAccordion();
+  const resetBtn=document.getElementById('reset-btn');
+  if(resetBtn) resetBtn.classList.toggle('vis', hasAny());
+
+  // chips
+  const chips=document.getElementById('chips-row');
+  if(chips){
+    const arr=[];
+    FD.forEach(g=>sel[g.id].forEach(oid=>{
+      const opt=g.opts.find(o=>o.id===oid);
+      if(opt) arr.push(`<span class="chip">${opt.label}<button onclick="removeChip('${g.id}','${oid}')" aria-label="${opt.label} 필터 제거">×</button></span>`);
+    }));
+    chips.innerHTML=arr.join('');
+  }
+
+  // filter products
+  let matched=PRODUCTS.filter(isMatch);
+
+  // sort
+  if(currentSort==='price-asc') matched.sort((a,b)=>a.priceVal-b.priceVal);
+  else if(currentSort==='price-desc') matched.sort((a,b)=>b.priceVal-a.priceVal);
+  else if(currentSort==='name') matched.sort((a,b)=>a.name.localeCompare(b.name,'ko'));
+
+  // count
+  const ct=document.getElementById('prod-count');
+  if(ct) ct.textContent=matched.length;
+  const total=document.getElementById('total-ct');
+  if(total) total.textContent=PRODUCTS.length;
+
+  const grid=document.getElementById('products-grid');
+  if(!grid) return;
+
+  if(matched.length===0){
+    grid.innerHTML=`<div class="no-products">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".3"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <p style="margin-top:12px;font-size:14px;font-weight:500">조건에 맞는 상품이 없습니다</p>
+      <p style="margin-top:6px;font-size:13px">필터를 조정하거나 <a href="wizard.html" style="color:var(--teal)">스마트 찾기</a>를 이용해보세요</p>
+      <button onclick="clearAll()" class="btn btn--outline" style="margin-top:16px;font-size:12px">필터 초기화</button>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML=matched.map(p=>`
+    <article class="prod-card">
+      <div class="prod-card__img">
+        <div class="img-ph">${getIcon(p.f.category)}</div>
+        <button class="prod-card__compare ${compareSet.has(p.code)?'':'hidden'}"
+          onclick="addCompare('${p.code}',this)"
+          style="background:${compareSet.has(p.code)?'var(--teal)':'white'};color:${compareSet.has(p.code)?'#fff':'var(--charcoal)'}"
+          aria-label="${p.name} 비교에 추가">
+          ${compareSet.has(p.code)?'✓':'비교'}
+        </button>
+      </div>
+      <div class="prod-card__body">
+        <div class="prod-card__code">${p.code}</div>
+        <div class="prod-card__name">${p.name}</div>
+        <div class="prod-card__tags">${p.tags.map(t=>`<span class="prod-card__tag">${t}</span>`).join('')}</div>
+        <div class="prod-card__price">${p.price}</div>
+        <a href="product-detail.html?code=${p.code}" class="prod-card__btn">상세보기</a>
+      </div>
+    </article>`).join('');
+
+  // compare button opacity fix
+  document.querySelectorAll('.prod-card__compare').forEach(btn=>{
+    btn.style.opacity='';
+    btn.classList.remove('hidden');
+  });
+
+  // mobile filter toggle badge
+  const toggleCt=document.getElementById('filter-toggle-ct');
+  const selCnt=FD.reduce((acc,g)=>acc+sel[g.id].size,0);
+  if(toggleCt) toggleCt.textContent=selCnt>0?`(${selCnt}개 선택됨)`:'';
+}
+
+readParams();
+render();
+</script>
+</body>
+</html>
