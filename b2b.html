@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B2B 기업구매 — LDL MOUNT</title>
+  <meta name="description" content="LDL MOUNT B2B 기업구매 전용 페이지. 견적서 즉시 발행, 세금계산서 발행, 대량구매 할인, 전담 CS 서비스.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .b2b-hero { background: var(--charcoal); padding: 56px 0 48px; color: var(--white); }
+    .b2b-hero-ey { font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--teal); display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .b2b-hero-ey::before { content: ''; width: 24px; height: 2px; background: var(--teal); }
+    .b2b-hero-title { font-family: var(--font-display); font-size: clamp(36px,6vw,64px); font-weight: 900; text-transform: uppercase; line-height: 1; margin-bottom: 12px; }
+    .b2b-hero-sub { font-size: 15px; font-weight: 300; color: rgba(255,255,255,.5); margin-bottom: 24px; max-width: 520px; line-height: 1.7; }
+    .b2b-hero-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .b2b-pill { font-size: 12px; padding: 5px 14px; border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.7); display: flex; align-items: center; gap: 6px; }
+    .b2b-pill svg { width: 14px; height: 14px; flex-shrink: 0; stroke: var(--teal); }
+    .b2b-hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .process-num { background: var(--charcoal); color: var(--white); }
+    .send-ok { display: none; text-align: center; padding: 32px; }
+    .send-ok svg { width: 48px; height: 48px; stroke: var(--teal); margin: 0 auto 16px; }
+    @media(max-width:768px){
+      .b2b-benefits{ grid-template-columns:1fr 1fr !important; }
+      .b2b-process{ flex-direction:column; gap:16px; }
+      .b2b-process::before{ display:none; }
+      .b2b-form-grid{ grid-template-columns:1fr !important; }
+    }
+    @media(max-width:480px){ .b2b-benefits{ grid-template-columns:1fr !important; } }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="logo" aria-label="LDL MOUNT 홈">
+      <img src="logo.png" alt="LDL MOUNT" class="logo__img">
+    </a>
+    <ul class="nav__menu" role="list">
+      <li><a href="wizard.html">솔루션별 찾기</a></li>
+      <li><a href="products.html">상품 카테고리</a></li>
+      <li><a href="b2b.html" style="color:var(--teal)">B2B 기업구매</a></li>
+    </ul>
+    <a href="#b2b-form" class="btn btn--teal nav__cta">견적 요청 ↗</a>
+    <button class="hamburger" aria-label="메뉴 열기" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav__drawer" id="nav-drawer" role="navigation">
+  <a href="wizard.html" onclick="toggleMenu()">솔루션별 찾기</a>
+  <a href="products.html" onclick="toggleMenu()">상품 카테고리</a>
+  <a href="b2b.html" onclick="toggleMenu()">B2B 기업구매</a>
+  <a href="#b2b-form" class="btn btn--teal" onclick="toggleMenu()">견적 요청 ↗</a>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ① HERO -->
+  <section class="b2b-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="경로">
+        <a href="index.html">홈</a><span>›</span><span>B2B 기업구매</span>
+      </nav>
+      <div class="b2b-hero-ey">B2B 기업구매 전용</div>
+      <h1 class="b2b-hero-title">SMARTER<br><span style="color:var(--teal)">WORK.</span></h1>
+      <p class="b2b-hero-sub">견적부터 납품, 세금계산서까지 한 번에.<br>전담 CS 담당자가 처음부터 끝까지 도와드립니다.</p>
+      <div class="b2b-hero-pills">
+        <span class="b2b-pill"><svg fill="none" viewBox="0 0 14 14" stroke-width="1.8" stroke-linecap="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>견적서 즉시 발행</span>
+        <span class="b2b-pill"><svg fill="none" viewBox="0 0 14 14" stroke-width="1.8" stroke-linecap="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>세금계산서 발행</span>
+        <span class="b2b-pill"><svg fill="none" viewBox="0 0 14 14" stroke-width="1.8" stroke-linecap="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>전국 납품 가능</span>
+        <span class="b2b-pill"><svg fill="none" viewBox="0 0 14 14" stroke-width="1.8" stroke-linecap="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>수량 할인 적용</span>
+        <span class="b2b-pill"><svg fill="none" viewBox="0 0 14 14" stroke-width="1.8" stroke-linecap="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>전담 CS 배정</span>
+      </div>
+      <div class="b2b-hero-btns">
+        <a href="#b2b-form" class="btn btn--teal">견적 요청하기 →</a>
+        <a href="#catalog" class="btn btn--outline-light" id="catalog">카탈로그 PDF ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ② BENEFITS -->
+  <section class="page-section page-section--white">
+    <div class="container">
+      <p class="eyebrow" style="margin-bottom:24px">B2B 혜택</p>
+      <div class="b2b-benefits" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+        <div class="b2b-benefit">
+          <div class="b2b-benefit__icon">
+            <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#00A099" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          </div>
+          <h3 style="font-size:14px;font-weight:500;color:var(--charcoal);margin-bottom:6px">견적서 즉시 발행</h3>
+          <p style="font-size:13px;color:var(--gray);line-height:1.65">요청 후 1영업일 이내 공식 견적서를 이메일로 전송합니다.</p>
+        </div>
+        <div class="b2b-benefit">
+          <div class="b2b-benefit__icon">
+            <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#00A099" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+          </div>
+          <h3 style="font-size:14px;font-weight:500;color:var(--charcoal);margin-bottom:6px">세금계산서 발행</h3>
+          <p style="font-size:13px;color:var(--gray);line-height:1.65">법인 · 개인사업자 모두 가능. 납품 즉시 전자 세금계산서 발행.</p>
+        </div>
+        <div class="b2b-benefit">
+          <div class="b2b-benefit__icon">
+            <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#00A099" stroke-width="1.8" stroke-linecap="round"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+          </div>
+          <h3 style="font-size:14px;font-weight:500;color:var(--charcoal);margin-bottom:6px">수량별 할인 적용</h3>
+          <p style="font-size:13px;color:var(--gray);line-height:1.65">10개 이상 구매 시 수량에 따라 자동 할인이 적용됩니다.</p>
+        </div>
+        <div class="b2b-benefit">
+          <div class="b2b-benefit__icon">
+            <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#00A099" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <h3 style="font-size:14px;font-weight:500;color:var(--charcoal);margin-bottom:6px">전담 CS 담당자</h3>
+          <p style="font-size:13px;color:var(--gray);line-height:1.65">기업 고객 전담 담당자가 주문부터 납품 · A/S까지 지원합니다.</p>
+        </div>
+        <div class="b2b-benefit">
+          <div class="b2b-benefit__icon">
+            <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#00A099" stroke-width="1.8" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <h3 style="font-size:14px;font-weight:500;color:var(--charcoal);margin-bottom:6px">카탈로그 제공</h3>
+          <p style="font-size:13px;color:var(--gray);line-height:1.65">전체 상품 스펙 카탈로그 PDF를 무료로 제공합니다.</p>
+        </div>
+        <div class="b2b-benefit">
+          <div class="b2b-benefit__icon">
+            <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#00A099" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3 style="font-size:14px;font-weight:500;color:var(--charcoal);margin-bottom:6px">신속 납품</h3>
+          <p style="font-size:13px;color:var(--gray);line-height:1.65">결제 확인 후 익일 출고. 긴급 납품 요청 시 담당자 협의 가능.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ PROCESS -->
+  <section class="page-section page-section--gray">
+    <div class="container">
+      <p class="eyebrow" style="margin-bottom:28px">거래 프로세스</p>
+      <div class="b2b-process">
+        <div class="b2b-step">
+          <div class="b2b-step__num process-num">1</div>
+          <div class="b2b-step__name">견적 요청</div>
+          <div class="b2b-step__desc">폼 작성 또는 전화·이메일</div>
+        </div>
+        <div class="b2b-step">
+          <div class="b2b-step__num process-num">2</div>
+          <div class="b2b-step__name">담당자 확인</div>
+          <div class="b2b-step__desc">1영업일 내 연락</div>
+        </div>
+        <div class="b2b-step">
+          <div class="b2b-step__num process-num">3</div>
+          <div class="b2b-step__name">견적서 발송</div>
+          <div class="b2b-step__desc">이메일로 견적서 전달</div>
+        </div>
+        <div class="b2b-step">
+          <div class="b2b-step__num process-num">4</div>
+          <div class="b2b-step__name">주문 확정</div>
+          <div class="b2b-step__desc">발주서 · 결제 완료</div>
+        </div>
+        <div class="b2b-step">
+          <div class="b2b-step__num" style="background:var(--teal);color:#fff">5</div>
+          <div class="b2b-step__name">납품 완료</div>
+          <div class="b2b-step__desc">출고 · 배송 · 세금계산서</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ DISCOUNT TIERS -->
+  <section class="page-section page-section--white">
+    <div class="container" style="max-width:720px">
+      <p class="eyebrow" style="margin-bottom:24px">수량별 할인 안내</p>
+      <table class="tier-table">
+        <thead>
+          <tr>
+            <th>구매 수량</th>
+            <th>할인율</th>
+            <th>적용 방식</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>10개 이상</td><td class="tier-discount">3% 할인</td><td style="font-size:12px;color:var(--gray)">자동 적용</td></tr>
+          <tr><td>30개 이상</td><td class="tier-discount">5% 할인</td><td style="font-size:12px;color:var(--gray)">자동 적용</td></tr>
+          <tr><td>50개 이상</td><td class="tier-discount">8% 할인</td><td style="font-size:12px;color:var(--gray)">견적 요청 시 적용</td></tr>
+          <tr><td>100개 이상</td><td class="tier-discount">별도 협의</td><td style="font-size:12px;color:var(--gray)">담당자 직접 연락</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:var(--gray);margin-top:12px">※ 할인율은 동일 상품 기준입니다. 혼합 구성 시 담당자 협의로 결정됩니다.</p>
+    </div>
+  </section>
+
+  <!-- ⑤ QUOTE FORM -->
+  <section class="page-section page-section--gray" id="b2b-form">
+    <div class="container" style="max-width:760px">
+      <p class="eyebrow" style="margin-bottom:8px">견적 요청</p>
+      <p style="font-size:14px;color:var(--gray);margin-bottom:28px">아래 양식을 작성하시면 1영업일 이내 담당자가 연락드립니다.</p>
+
+      <div id="quote-form-wrap">
+        <form name="b2b-quote" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+          <input type="hidden" name="form-name" value="b2b-quote">
+          <p style="display:none"><input name="bot-field"></p>
+
+          <div class="b2b-form-grid" style="grid-template-columns:1fr 1fr">
+            <div class="b2b-field">
+              <label class="b2b-label" for="company">회사명<span class="req">*</span></label>
+              <input class="b2b-input" id="company" name="company" type="text" placeholder="주식회사 ○○○" required>
+            </div>
+            <div class="b2b-field">
+              <label class="b2b-label" for="manager">담당자명<span class="req">*</span></label>
+              <input class="b2b-input" id="manager" name="manager" type="text" placeholder="홍길동" required>
+            </div>
+            <div class="b2b-field">
+              <label class="b2b-label" for="phone">연락처<span class="req">*</span></label>
+              <input class="b2b-input" id="phone" name="phone" type="tel" placeholder="010-0000-0000" required>
+            </div>
+            <div class="b2b-field">
+              <label class="b2b-label" for="email">이메일<span class="req">*</span></label>
+              <input class="b2b-input" id="email" name="email" type="email" placeholder="name@company.com" required>
+            </div>
+          </div>
+
+          <div class="b2b-field" style="margin-bottom:10px">
+            <label class="b2b-label">요청 상품<span class="req">*</span></label>
+          </div>
+          <div id="prod-list"></div>
+          <button type="button" class="prod-req-add" id="add-prod-btn" onclick="addProd()">+ 상품 추가 (최대 5개)</button>
+
+          <div class="form-checks">
+            <label class="form-check"><input type="checkbox" name="options" value="install"> 설치 포함 견적 요청</label>
+            <label class="form-check"><input type="checkbox" name="options" value="sample"> 샘플 사전 요청</label>
+            <label class="form-check"><input type="checkbox" name="options" value="catalog"> 카탈로그 수령 희망</label>
+          </div>
+
+          <div class="b2b-field b2b-field full" style="margin-bottom:20px">
+            <label class="b2b-label" for="message">요청사항</label>
+            <textarea class="b2b-input" id="message" name="message" rows="4" placeholder="납품 일정, 설치 환경, 특이사항 등을 기재해주세요" style="resize:vertical"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--dark" style="width:100%;padding:14px;font-size:15px;font-family:var(--font-display);letter-spacing:.06em;text-transform:uppercase">견적 요청 보내기 →</button>
+          <p style="font-size:12px;color:var(--gray);text-align:center;margin-top:10px">입력하신 정보는 견적 처리 목적으로만 사용됩니다 · 영업일 기준 1일 내 연락</p>
+        </form>
+      </div>
+
+      <div class="send-ok" id="send-ok">
+        <svg fill="none" viewBox="0 0 48 48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="24" r="20"/>
+          <path d="M14 24l7 7 13-13"/>
+        </svg>
+        <h2 style="font-family:var(--font-display);font-size:24px;font-weight:700;text-transform:uppercase;color:var(--charcoal);margin-bottom:8px">견적 요청 완료</h2>
+        <p style="font-size:14px;color:var(--gray);line-height:1.7">감사합니다. 담당자가 <strong>1영업일 이내</strong> 연락드리겠습니다.<br>급하신 경우 아래 연락처로 직접 문의 주세요.</p>
+        <a href="index.html" class="btn btn--outline" style="margin-top:20px;display:inline-flex">홈으로 돌아가기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ FAQ -->
+  <section class="page-section page-section--white" id="faq">
+    <div class="container" style="max-width:720px">
+      <p class="eyebrow" style="margin-bottom:24px">자주 묻는 질문</p>
+      <div class="faq-list" id="faq-list"></div>
+    </div>
+  </section>
+
+  <!-- ⑦ CONTACT BAR -->
+  <section style="background:var(--black);padding:36px 0">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <div>
+        <p style="font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:6px">기업 구매 전용 문의</p>
+        <p style="font-size:14px;color:rgba(255,255,255,.5)">전화 또는 이메일로도 빠르게 연결됩니다</p>
+      </div>
+      <div style="display:flex;gap:12px">
+        <a href="tel:0000000000" class="btn btn--teal">전화 문의</a>
+        <a href="mailto:contact@ld-networks.co.kr" class="btn btn--outline-light">이메일 문의</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="logo" aria-label="LDL MOUNT 홈">
+          <img src="logo.png" alt="LDL MOUNT" class="logo__img logo__img--footer">
+        </a>
+        <p>주식회사 엘디네트웍스<br>Stronger Spaces. Smarter Work.<br>Built to Last.</p>
+      </div>
+      <div class="footer__col">
+        <h4>상품</h4>
+        <ul>
+          <li><a href="products.html?cat=tvstand">이동식 TV스탠드</a></li>
+          <li><a href="products.html?cat=monitor">모니터암</a></li>
+          <li><a href="products.html?cat=wall">벽걸이 브라켓</a></li>
+          <li><a href="products.html?cat=projector">프로젝터 마운트</a></li>
+          <li><a href="products.html?cat=tablet">태블릿 거치대</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>솔루션</h4>
+        <ul>
+          <li><a href="wizard.html">1인 사무 세팅</a></li>
+          <li><a href="wizard.html">관제 / 멀티 모니터</a></li>
+          <li><a href="wizard.html">게이밍</a></li>
+          <li><a href="wizard.html">회의실 / 강의실</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>고객 지원</h4>
+        <ul>
+          <li><a href="b2b.html#b2b-form">B2B 견적 요청</a></li>
+          <li><a href="b2b.html#faq">자주 묻는 질문</a></li>
+          <li><a href="#">이용약관</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2025 주식회사 엘디네트웍스. All rights reserved.</p>
+      <p class="footer__tagline">Stronger Spaces. Smarter Work. Built to Last.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* NAV */
+function toggleMenu(){document.getElementById('nav-drawer').classList.toggle('open');}
+document.addEventListener('click',function(e){
+  const d=document.getElementById('nav-drawer'),h=document.querySelector('.hamburger');
+  if(d&&h&&!d.contains(e.target)&&!h.contains(e.target))d.classList.remove('open');
+});
+const navEl=document.querySelector('.nav');
+window.addEventListener('scroll',()=>{navEl.style.boxShadow=window.scrollY>40?'0 2px 20px rgba(0,0,0,.10)':'none';});
+
+/* PRODUCT ROWS */
+const PROD_OPTS = ['상품 선택','APL-GS501 — 매커니컬 스프링 모니터암','APL-C024 — 클램프/홀 겸용 듀얼 모니터암','APL-GS541 — 고중량 게이밍 싱글 모니터암','APL-GS521 — 울트라 고중량 싱글 모니터암','APL-GBMW — 이동식 TV 무빙스탠드 대형','APL-LBM — 이동식 TV 무빙스탠드 중형','APL-64TVD — TV 벽걸이 풀모션 브라켓','APL-B01 — TV 벽걸이 틸트 브라켓','APL-PB11S — 천장형 프로젝터 브라켓','APL-TAB01 — 클램프형 태블릿 거치대','기타 (직접 기재)'];
+let prodCount = 1;
+
+function makeProdRow(idx, removable){
+  const div = document.createElement('div');
+  div.className = 'prod-req-row';
+  div.dataset.idx = idx;
+  const sel = document.createElement('select');
+  sel.name = 'product_' + idx;
+  sel.innerHTML = PROD_OPTS.map(o=>`<option value="${o==='상품 선택'?'':o}">${o}</option>`).join('');
+  const qty = document.createElement('input');
+  qty.type = 'number'; qty.name = 'qty_' + idx;
+  qty.min = '1'; qty.value = '1'; qty.placeholder = '수량';
+  const rm = document.createElement('button');
+  rm.type = 'button'; rm.className = 'prod-req-remove';
+  rm.textContent = '×'; rm.title = '행 삭제';
+  rm.disabled = !removable;
+  rm.style.opacity = removable ? '1' : '0.3';
+  rm.onclick = () => { div.remove(); prodCount--; document.getElementById('add-prod-btn').style.display=''; };
+  div.appendChild(sel); div.appendChild(qty); div.appendChild(rm);
+  return div;
+}
+
+function addProd(){
+  if(prodCount >= 5){ alert('최대 5개까지 추가할 수 있습니다.'); return; }
+  prodCount++;
+  document.getElementById('prod-list').appendChild(makeProdRow(prodCount, true));
+  if(prodCount >= 5) document.getElementById('add-prod-btn').style.display='none';
+}
+
+document.getElementById('prod-list').appendChild(makeProdRow(1, false));
+
+/* FORM SUBMIT */
+function handleSubmit(e){
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+  fetch('/', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: new URLSearchParams(data).toString() })
+    .then(() => {
+      document.getElementById('quote-form-wrap').style.display = 'none';
+      const ok = document.getElementById('send-ok');
+      ok.style.display = 'block';
+      window.scrollTo({ top: ok.offsetTop - 80, behavior: 'smooth' });
+    })
+    .catch(() => alert('전송 중 오류가 발생했습니다. 이메일로 직접 문의 부탁드립니다.'));
+}
+
+/* FAQ */
+const FAQS = [
+  { q:'세금계산서 발행이 가능한가요?', a:'네, 법인 및 개인사업자 모두 가능합니다. 납품 확인 후 영업일 기준 1일 이내 전자 세금계산서를 발행해드립니다. 발행을 위해 사업자등록증 사본이 필요합니다.' },
+  { q:'샘플 제품을 먼저 받아볼 수 있나요?', a:'30개 이상 주문 예정인 경우 샘플 1개를 선 발송해드립니다. 견적 요청 시 "샘플 사전 요청" 옵션을 선택해주세요. 샘플 비용은 본 주문 시 차감됩니다.' },
+  { q:'설치까지 함께 진행할 수 있나요?', a:'수도권 지역 한정으로 설치 서비스 연결이 가능합니다. 견적 요청 시 "설치 포함 견적 요청" 옵션을 선택해주세요. 지방의 경우 설치 파트너사 안내를 도와드립니다.' },
+  { q:'결제 방식은 어떻게 되나요?', a:'법인 계좌이체, 법인카드, 구매 발주서 선발행 후 결제 모두 가능합니다. 100만원 이상 주문 건에 한해 분할 결제도 협의 가능합니다.' },
+  { q:'납품 가능 지역은 어디까지인가요?', a:'전국 납품 가능합니다. 도서 산간 지역은 추가 배송비가 발생할 수 있습니다. 50개 이상 주문 시 서울·경기·인천 지역 무료 배송이 적용됩니다.' },
+  { q:'납품 후 A/S는 어떻게 받나요?', a:'구매일로부터 1년 이내 제품 하자 발생 시 무상 교체 또는 수리 서비스를 제공합니다. 전담 CS 담당자를 통해 접수하시면 됩니다.' },
+];
+
+const faqList = document.getElementById('faq-list');
+FAQS.forEach((f,i)=>{
+  faqList.innerHTML += `<div class="faq-item">
+    <button class="faq-btn" onclick="toggleFaq(${i})" aria-expanded="false" id="faq-btn-${i}">
+      <span class="faq-q">${f.q}</span>
+      <span class="faq-icon" id="faq-icon-${i}">▾</span>
+    </button>
+    <div class="faq-a" id="faq-a-${i}">${f.a}</div>
+  </div>`;
+});
+
+function toggleFaq(idx){
+  const a = document.getElementById('faq-a-'+idx);
+  const ic = document.getElementById('faq-icon-'+idx);
+  const btn = document.getElementById('faq-btn-'+idx);
+  const isOpen = a.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(el=>el.classList.remove('open'));
+  document.querySelectorAll('.faq-icon').forEach(el=>el.classList.remove('open'));
+  document.querySelectorAll('.faq-btn').forEach(el=>el.setAttribute('aria-expanded','false'));
+  if(!isOpen){ a.classList.add('open'); ic.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+}
+</script>
+</body>
+</html>

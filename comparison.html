@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>상품 비교 — LDL MOUNT</title>
+  <meta name="description" content="LDL MOUNT 상품을 나란히 비교해보세요. 스펙을 한눈에 확인하고 차이점만 확인할 수 있습니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .comp-wrap { overflow-x: auto; }
+    .comp-table { min-width: 600px; }
+    .comp-img { height: 80px; background: var(--surface); display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+    .comp-img svg { width: 36px; height: 36px; opacity: .15; }
+    .diff-toggle { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--gray); cursor: pointer; background: none; border: none; font-family: var(--font-body); padding: 0; }
+    .diff-sw { width: 36px; height: 20px; background: rgba(0,0,0,.15); border-radius: 10px; position: relative; transition: background .2s; flex-shrink: 0; }
+    .diff-sw.on { background: var(--teal); }
+    .diff-sw::after { content: ''; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; background: var(--white); border-radius: 50%; transition: left .2s; }
+    .diff-sw.on::after { left: 19px; }
+    .same-row { opacity: 1; }
+    .same-row.hide { display: none; }
+    .comp-cell-val svg { width: 16px; height: 16px; display: inline; vertical-align: -3px; }
+    .teal-val { color: var(--teal); font-weight: 600; }
+    @media(max-width:768px){ .comp-table{ grid-template-columns: 100px repeat(3,1fr) !important; } }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="logo" aria-label="LDL MOUNT 홈">
+      <img src="logo.png" alt="LDL MOUNT" class="logo__img">
+    </a>
+    <ul class="nav__menu" role="list">
+      <li><a href="wizard.html">솔루션별 찾기</a></li>
+      <li><a href="products.html">상품 카테고리</a></li>
+      <li><a href="b2b.html">B2B 기업구매</a></li>
+    </ul>
+    <a href="b2b.html#b2b-form" class="btn btn--teal nav__cta">견적 요청 ↗</a>
+    <button class="hamburger" aria-label="메뉴 열기" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav__drawer" id="nav-drawer" role="navigation">
+  <a href="wizard.html" onclick="toggleMenu()">솔루션별 찾기</a>
+  <a href="products.html" onclick="toggleMenu()">상품 카테고리</a>
+  <a href="b2b.html" onclick="toggleMenu()">B2B 기업구매</a>
+  <a href="b2b.html#b2b-form" class="btn btn--teal" onclick="toggleMenu()">견적 요청 ↗</a>
+</div>
+
+<div class="page-wrap">
+  <section class="inner-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="경로">
+        <a href="index.html">홈</a><span>›</span>
+        <a href="products.html">상품 카테고리</a><span>›</span>
+        <span>상품 비교</span>
+      </nav>
+      <p class="inner-hero__eyebrow">상품 비교</p>
+      <h1 class="inner-hero__title">나란히<br>비교하기</h1>
+      <p class="inner-hero__sub">최대 3개 상품의 스펙을 한눈에 비교해보세요</p>
+    </div>
+  </section>
+
+  <section class="page-section page-section--white">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+        <div>
+          <span style="font-size:13px;color:var(--gray)">비교 중: <b id="comp-count" style="color:var(--charcoal)">3</b>개 상품</span>
+          <button onclick="clearCompare()" style="margin-left:12px;font-size:12px;color:var(--teal);background:none;border:none;cursor:pointer;font-family:var(--font-body)">초기화</button>
+        </div>
+        <button class="diff-toggle" onclick="toggleDiff(this)">
+          <div class="diff-sw" id="diff-sw"></div>
+          <span>차이점만 보기</span>
+        </button>
+      </div>
+
+      <div class="comp-wrap">
+        <div class="comp-table" id="comp-table" style="display:grid;grid-template-columns:150px repeat(3,1fr)">
+          <!-- JS로 렌더링 -->
+        </div>
+      </div>
+
+      <div style="margin-top:24px;padding:12px 16px;background:var(--surface);font-size:12px;color:var(--gray)">
+        <span style="color:var(--teal);font-weight:500">초록색</span> = 해당 항목에서 가장 유리한 조건 · "차이점만 보기" 토글 시 동일 항목은 숨겨집니다.
+      </div>
+
+      <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+        <a href="products.html" class="btn btn--outline">← 전체 상품 보기</a>
+        <a href="wizard.html" class="btn btn--teal">스마트 상품 찾기 →</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="logo" aria-label="LDL MOUNT 홈">
+          <img src="logo.png" alt="LDL MOUNT" class="logo__img logo__img--footer">
+        </a>
+        <p>주식회사 엘디네트웍스<br>Stronger Spaces. Smarter Work.<br>Built to Last.</p>
+      </div>
+      <div class="footer__col">
+        <h4>상품</h4>
+        <ul>
+          <li><a href="products.html?cat=monitor">모니터암</a></li>
+          <li><a href="products.html?cat=tvstand">TV 스탠드</a></li>
+          <li><a href="products.html?cat=wall">벽걸이 브라켓</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>고객 지원</h4>
+        <ul>
+          <li><a href="b2b.html#b2b-form">B2B 견적 요청</a></li>
+          <li><a href="b2b.html#faq">자주 묻는 질문</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2025 주식회사 엘디네트웍스. All rights reserved.</p>
+      <p class="footer__tagline">Stronger Spaces. Smarter Work. Built to Last.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('nav-drawer').classList.toggle('open');}
+document.addEventListener('click',function(e){
+  const d=document.getElementById('nav-drawer'),h=document.querySelector('.hamburger');
+  if(d&&h&&!d.contains(e.target)&&!h.contains(e.target))d.classList.remove('open');
+});
+const navEl=document.querySelector('.nav');
+window.addEventListener('scroll',()=>{navEl.style.boxShadow=window.scrollY>40?'0 2px 20px rgba(0,0,0,.10)':'none';});
+
+/* PRODUCT DATABASE */
+const ALL_PRODUCTS = {
+  'APL-GS501': {
+    name:'매커니컬 스프링 모니터암', price:'₩25,500', priceVal:25500,
+    specs:{ '지원 화면 크기':'17~32인치','최대 수용 무게':'최대 9kg','VESA 규격':'75×75 · 100×100','화면 수':'싱글 (1대)','설치 방식':'클램프/홀 겸용','클램프 허용 두께':'10~80mm','상하 기울기 (틸트)':'+90°~-90°','좌우 회전 (스위블)':'+90°~-90°','로테이션':'360°','피벗 (세로)':'yes','높낮이 조절':'yes','케이블 정리':'yes','분리형 베사판':'yes','색상':'블랙 · 화이트','보증 기간':'1년' }
+  },
+  'APL-C024': {
+    name:'클램프/홀 겸용 듀얼 모니터암', price:'₩45,000', priceVal:45000,
+    specs:{ '지원 화면 크기':'13~32인치 각','최대 수용 무게':'각 최대 8kg','VESA 규격':'100×100','화면 수':'듀얼 (2대)','설치 방식':'클램프/홀 겸용','클램프 허용 두께':'10~70mm','상하 기울기 (틸트)':'+45°~-45°','좌우 회전 (스위블)':'+90°~-90°','로테이션':'360°','피벗 (세로)':'yes','높낮이 조절':'yes','케이블 정리':'yes','분리형 베사판':'yes','색상':'블랙','보증 기간':'1년' }
+  },
+  'APL-GS541': {
+    name:'고중량 게이밍 싱글 모니터암', price:'₩68,000', priceVal:68000,
+    specs:{ '지원 화면 크기':'27~45인치','최대 수용 무게':'최대 14kg','VESA 규격':'100×100','화면 수':'싱글 (1대)','설치 방식':'클램프/홀 겸용','클램프 허용 두께':'10~45mm','상하 기울기 (틸트)':'+40°~-40°','좌우 회전 (스위블)':'+90°~-90°','로테이션':'360°','피벗 (세로)':'yes','높낮이 조절':'yes','케이블 정리':'yes','분리형 베사판':'yes','색상':'블랙','보증 기간':'1년' }
+  },
+};
+
+const SPEC_GROUPS = {
+  '지원 범위': ['지원 화면 크기','최대 수용 무게','VESA 규격','화면 수'],
+  '설치': ['설치 방식','클램프 허용 두께'],
+  '모션': ['상하 기울기 (틸트)','좌우 회전 (스위블)','로테이션'],
+  '편의 기능': ['피벗 (세로)','높낮이 조절','케이블 정리','분리형 베사판','색상'],
+  '구매 정보': ['보증 기간'],
+};
+
+const BEST_LOGIC = {
+  '최대 수용 무게': (vals) => { const nums=vals.map(v=>parseFloat(v)||0); const max=Math.max(...nums); return vals.map(v=>parseFloat(v)===max); },
+  '지원 화면 크기': (vals) => [false,false,true],
+  '클램프 허용 두께': (vals) => { const ranges=vals.map(v=>{const m=v.match(/(\d+)~(\d+)/);return m?parseInt(m[2])-parseInt(m[1]):0;}); const max=Math.max(...ranges); return ranges.map(r=>r===max); },
+  '색상': (vals) => vals.map(v=>v.includes('·')),
+  '상하 기울기 (틸트)': (vals) => { const r=vals.map(v=>{const m=v.match(/\+(\d+)/);return m?parseInt(m[1]):0;}); const max=Math.max(...r); return r.map(x=>x===max); },
+};
+
+let diffMode = false;
+
+function getBest(key, vals) {
+  if(BEST_LOGIC[key]) return BEST_LOGIC[key](vals);
+  return vals.map(()=>false);
+}
+
+function renderVal(v) {
+  if(v==='yes') return `<svg viewBox="0 0 16 16" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>`;
+  if(v==='no') return `<span style="color:var(--gray)">—</span>`;
+  return v;
+}
+
+function renderTable() {
+  const codes = Object.keys(ALL_PRODUCTS);
+  const prods = codes.map(c=>ALL_PRODUCTS[c]);
+  document.getElementById('comp-count').textContent = codes.length;
+
+  let html = '';
+
+  // Header row
+  html += `<div class="comp-row comp-head-row">
+    <div class="comp-cell-head" style="background:var(--surface)"></div>
+    ${prods.map((p,i)=>`<div class="comp-cell-head" style="border-left:1px solid rgba(0,0,0,.06)">
+      <div class="comp-img"><svg viewBox="0 0 48 48" fill="none" stroke="#3D3939" stroke-width="1.5" stroke-linecap="round"><rect x="8" y="8" width="32" height="22" rx="2"/><path d="M18 38h12M24 30v8"/></svg></div>
+      <div class="comp-prod-code">${codes[i]}</div>
+      <div class="comp-prod-name">${p.name}</div>
+      <div class="comp-prod-price" style="color:${i===0?'var(--teal)':'var(--charcoal)'}">${p.price}</div>
+      <a href="product-detail.html?code=${codes[i]}" class="btn btn--dark" style="font-size:11px;padding:7px 0;display:block;text-align:center;letter-spacing:.04em">상세보기</a>
+    </div>`).join('')}
+  </div>`;
+
+  // Spec rows
+  Object.entries(SPEC_GROUPS).forEach(([sec, keys]) => {
+    html += `<div class="comp-row comp-sec-row">
+      <div class="comp-sec-cell" style="grid-column:1/-1">${sec}</div>
+    </div>`;
+
+    keys.forEach(key => {
+      const vals = prods.map(p=>p.specs[key]||'—');
+      const allSame = vals.every(v=>v===vals[0]);
+      const best = getBest(key, vals);
+      html += `<div class="comp-row ${allSame?'same-row':''} ${allSame&&diffMode?'hide':''}">
+        <div class="comp-cell comp-cell-label">${key}</div>
+        ${vals.map((v,i)=>`<div class="comp-cell comp-cell-val ${best[i]?'teal-val':''}" style="border-left:1px solid rgba(0,0,0,.05);${best[i]?'background:rgba(0,160,153,.04)':''}">${renderVal(v)}</div>`).join('')}
+      </div>`;
+    });
+  });
+
+  // Price row
+  const priceVals = prods.map(p=>p.priceVal);
+  const minPrice = Math.min(...priceVals);
+  html += `<div class="comp-row" style="border-top:2px solid var(--surface)">
+    <div class="comp-cell comp-cell-label" style="font-weight:500;color:var(--charcoal)">가격</div>
+    ${prods.map((p,i)=>`<div class="comp-cell comp-cell-val ${p.priceVal===minPrice?'teal-val':''}" style="font-size:15px;font-weight:500;border-left:1px solid rgba(0,0,0,.05);${p.priceVal===minPrice?'background:rgba(0,160,153,.04)':''}">${p.price}</div>`).join('')}
+  </div>`;
+
+  // Cart row
+  html += `<div class="comp-row" style="border-bottom:none">
+    <div class="comp-cell"></div>
+    ${codes.map(c=>`<div class="comp-cell" style="padding-top:14px;border-left:1px solid rgba(0,0,0,.05)"><a href="b2b.html#b2b-form" class="btn btn--teal" style="display:block;text-align:center;font-size:11px;padding:8px 0;letter-spacing:.04em">견적 요청</a></div>`).join('')}
+  </div>`;
+
+  document.getElementById('comp-table').innerHTML = html;
+}
+
+function toggleDiff(btn){
+  diffMode = !diffMode;
+  document.getElementById('diff-sw').classList.toggle('on', diffMode);
+  document.querySelectorAll('.same-row').forEach(r=>r.classList.toggle('hide', diffMode));
+}
+
+function clearCompare(){
+  if(confirm('비교 목록을 초기화할까요?')){
+    localStorage.removeItem('ldl_compare');
+    window.location.href='products.html';
+  }
+}
+
+renderTable();
+</script>
+</body>
+</html>
