@@ -69,7 +69,7 @@
       </nav>
       <p class="inner-hero__eyebrow">전체 상품</p>
       <h1 class="inner-hero__title">상품 카테고리</h1>
-      <p class="inner-hero__sub">스펙 필터로 내 환경에 맞는 상품을 바로 찾아보세요 · 총 <span id="total-ct">12</span>개 상품</p>
+      <p class="inner-hero__sub">스펙 필터로 내 환경에 맞는 상품을 바로 찾아보세요 · 총 <span id="total-ct">13</span>개 상품</p>
     </div>
   </section>
 
@@ -183,44 +183,44 @@ function toggleFilterMobile(){
 /* ── FILTER DATA ── */
 const FD = [
   { id:'category', label:'상품 카테고리', open:true, type:'check', opts:[
-    {id:'monitor',label:'모니터암',count:6},
+    {id:'monitor',label:'모니터암',count:7},
     {id:'tvstand',label:'TV 스탠드',count:3},
     {id:'wallbracket',label:'벽걸이 브라켓',count:2},
     {id:'projector',label:'프로젝터 마운트',count:1},
     {id:'tablet',label:'태블릿 거치대',count:1},
   ]},
   { id:'install', label:'설치 방식', open:true, type:'check', opts:[
-    {id:'clamp',label:'클램프형 (책상 집게)',count:8},
+    {id:'clamp',label:'클램프형 (책상 집게)',count:9},
     {id:'grommet',label:'홀/그로밋 (책상 홀)',count:7},
     {id:'wall',label:'벽걸이 고정',count:3},
     {id:'mobile',label:'이동식 (바퀴형)',count:3},
     {id:'floor',label:'바닥 고정형',count:1},
   ]},
   { id:'size', label:'지원 화면 크기', open:true, type:'check', opts:[
-    {id:'s27',label:'27인치 이하',count:6},
-    {id:'s32',label:'27 ~ 32인치',count:7},
+    {id:'s27',label:'27인치 이하',count:7},
+    {id:'s32',label:'27 ~ 32인치',count:8},
     {id:'s43',label:'32 ~ 43인치',count:4},
     {id:'s65',label:'43 ~ 65인치',count:4},
     {id:'slarge',label:'65인치 이상',count:3},
   ]},
   { id:'weight', label:'수용 무게', open:false, type:'check', opts:[
-    {id:'w9',label:'9kg 이하 (표준)',count:7},
+    {id:'w9',label:'9kg 이하 (표준)',count:8},
     {id:'w15',label:'9 ~ 15kg (고중량)',count:3},
     {id:'w20',label:'15kg 이상 (초고중량)',count:2},
   ]},
   { id:'screens', label:'화면 수', open:false, type:'check', opts:[
     {id:'single',label:'싱글 (1대)',count:9},
-    {id:'dual',label:'듀얼 (2대)',count:2},
+    {id:'dual',label:'듀얼 (2대)',count:3},
     {id:'triple',label:'트리플 이상 (3대+)',count:1},
   ]},
   { id:'color', label:'색상', open:false, type:'color', opts:[
-    {id:'black',label:'블랙',color:'#1A1A1A',count:12},
+    {id:'black',label:'블랙',color:'#1A1A1A',count:13},
     {id:'white',label:'화이트',color:'#F0F0F0',count:4},
     {id:'silver',label:'실버',color:'#9E9E9E',count:2},
   ]},
   { id:'price', label:'가격대', open:false, type:'check', opts:[
     {id:'p3',label:'3만원 이하',count:2},
-    {id:'p7',label:'3만 ~ 7만원',count:3},
+    {id:'p7',label:'3만 ~ 7만원',count:4},
     {id:'p15',label:'7만 ~ 15만원',count:1},
     {id:'phigh',label:'가격 문의',count:6},
   ]},
@@ -228,6 +228,11 @@ const FD = [
 
 /* ── PRODUCT DATA ── */
 const PRODUCTS = [
+  { code:'APL-FLEX-A3-DUAL', name:'노트북+모니터 클램프형 듀얼암', price:'₩45,000', priceVal:45000,
+    img:'images/APL-FLEX-FIT-A3-DUAL-UPLOAD/thumb/apl-flex-fit-a3-dual-thumb-01.jpg',
+    detailUrl:'product-detail-apl-flex-a3-dual.html',
+    tags:['17~32인치','최대 9kg','노트북+모니터 동시 거치'],
+    f:{category:['monitor'],install:['clamp'],size:['s27','s32'],weight:['w9'],screens:['dual'],color:['black'],price:['p7']} },
   { code:'APL-GS501', name:'매커니컬 스프링 모니터암', price:'₩25,500', priceVal:25500,
     tags:['17~32인치','최대 9kg','클램프/홀 겸용'],
     f:{category:['monitor'],install:['clamp','grommet'],size:['s27','s32'],weight:['w9'],screens:['single'],color:['black','white'],price:['p3']} },
@@ -430,7 +435,9 @@ function render(){
   grid.innerHTML=matched.map(p=>`
     <article class="prod-card">
       <div class="prod-card__img">
-        <div class="img-ph">${getIcon(p.f.category)}</div>
+        ${p.img
+          ? `<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain;padding:16px;" loading="lazy">`
+          : `<div class="img-ph">${getIcon(p.f.category)}</div>`}
         <button class="prod-card__compare ${compareSet.has(p.code)?'':'hidden'}"
           onclick="addCompare('${p.code}',this)"
           style="background:${compareSet.has(p.code)?'var(--teal)':'white'};color:${compareSet.has(p.code)?'#fff':'var(--charcoal)'}"
@@ -443,7 +450,7 @@ function render(){
         <div class="prod-card__name">${p.name}</div>
         <div class="prod-card__tags">${p.tags.map(t=>`<span class="prod-card__tag">${t}</span>`).join('')}</div>
         <div class="prod-card__price">${p.price}</div>
-        <a href="product-detail.html?code=${p.code}" class="prod-card__btn">상세보기</a>
+        <a href="${p.detailUrl||('product-detail.html?code='+p.code)}" class="prod-card__btn">상세보기</a>
       </div>
     </article>`).join('');
 
