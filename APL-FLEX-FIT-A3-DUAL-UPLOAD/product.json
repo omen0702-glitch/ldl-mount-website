@@ -1,0 +1,113 @@
+{
+  "id": "APL-FLEX-FIT-A3-DUAL",
+  "model": "APL-FLEX FIT A3 PLUS DUAL",
+  "brand": "LDL MOUNT",
+  "manufacturer": "주식회사 엘디네트웍스",
+  "category": {
+    "main": "모니터암",
+    "sub": "데스크형 클램프 스프링암",
+    "type": "노트북+모니터 듀얼암"
+  },
+  "name_ko": "APL-FLEX FIT A3 플러스 듀얼 모니터+노트북 거치암",
+  "name_en": "APL-FLEX FIT A3 PLUS DUAL Monitor & Laptop Arm",
+  "color": "블랙 (Black)",
+  "description": "모니터 1대와 노트북을 동시에 거치할 수 있는 클램프형 스프링 암. 책상 클램프 고정 방식으로 별도 공구 없이 설치 가능하며, 모니터와 노트북 모두 각도 및 높이 자유 조절 가능.",
+  "pricing": {
+    "store_price": 45000,
+    "supply_price": 35000,
+    "open_market_price": 54000,
+    "currency": "KRW",
+    "shipping": "무료배송",
+    "price_source": "스토어팜 자체몰 판매가 (Google Spreadsheet 기준)"
+  },
+  "specs": {
+    "max_vesa": "100x100mm",
+    "recommended_size": "17~32인치",
+    "max_weight": "2~9kg",
+    "tilt": "+65° ~ -65°",
+    "swivel": "+90° ~ -90°",
+    "rotation": "+360°",
+    "clamp_thickness": "10~65mm",
+    "box_size": "388×274×88mm"
+  },
+  "keywords": {
+    "product": [
+      "APL-FLEX FIT A3 DUAL",
+      "APL-FLEX FIT A3 PLUS DUAL",
+      "LDL MOUNT",
+      "엘디엘마운트",
+      "A3듀얼"
+    ],
+    "function": [
+      "모니터암",
+      "노트북 거치대",
+      "노트북 모니터암",
+      "듀얼암",
+      "노트북 모니터 동시 거치",
+      "클램프형 모니터암",
+      "스프링암",
+      "높이조절 모니터암",
+      "각도조절 모니터암"
+    ],
+    "use_case": [
+      "홈오피스",
+      "재택근무",
+      "데스크 셋업",
+      "사무용 모니터암",
+      "게이밍 데스크 셋업",
+      "듀얼 작업환경",
+      "책상 정리",
+      "모니터 높이조절"
+    ],
+    "compatibility": [
+      "17인치 모니터암",
+      "24인치 모니터암",
+      "27인치 모니터암",
+      "32인치 모니터암",
+      "노트북 트레이",
+      "VESA 100x100",
+      "클램프 고정"
+    ]
+  },
+  "images": {
+    "thumb_folder": "images/APL-FLEX-FIT-A3-DUAL-UPLOAD/thumb/",
+    "detail_folder": "images/APL-FLEX-FIT-A3-DUAL-UPLOAD/detail/",
+    "thumb_count": 10,
+    "detail_count": 15,
+    "main_image": "apl-flex-fit-a3-dual-thumb-01.jpg",
+    "thumb_files": [
+      "apl-flex-fit-a3-dual-thumb-01.jpg",
+      "apl-flex-fit-a3-dual-thumb-02.jpg",
+      "apl-flex-fit-a3-dual-thumb-03.jpg",
+      "apl-flex-fit-a3-dual-thumb-04.jpg",
+      "apl-flex-fit-a3-dual-thumb-05.jpg",
+      "apl-flex-fit-a3-dual-thumb-06.jpg",
+      "apl-flex-fit-a3-dual-thumb-07.jpg",
+      "apl-flex-fit-a3-dual-thumb-08.jpg",
+      "apl-flex-fit-a3-dual-thumb-09.jpg",
+      "apl-flex-fit-a3-dual-thumb-10.jpg"
+    ],
+    "detail_files": [
+      "apl-flex-fit-a3-dual-detail-01.jpg",
+      "apl-flex-fit-a3-dual-detail-02.jpg",
+      "apl-flex-fit-a3-dual-detail-03.jpg",
+      "apl-flex-fit-a3-dual-detail-04.jpg",
+      "apl-flex-fit-a3-dual-detail-05.jpg",
+      "apl-flex-fit-a3-dual-detail-06.jpg",
+      "apl-flex-fit-a3-dual-detail-07.jpg",
+      "apl-flex-fit-a3-dual-detail-08.jpg",
+      "apl-flex-fit-a3-dual-detail-09.jpg",
+      "apl-flex-fit-a3-dual-detail-10.jpg",
+      "apl-flex-fit-a3-dual-detail-11.jpg",
+      "apl-flex-fit-a3-dual-detail-12.jpg",
+      "apl-flex-fit-a3-dual-detail-13.jpg",
+      "apl-flex-fit-a3-dual-detail-14.jpg",
+      "apl-flex-fit-a3-dual-detail-15.jpg"
+    ]
+  },
+  "notes": {
+    "classification_warning": "이 제품은 '듀얼 모니터암'이 아님. 모니터 1개 + 노트북 트레이 조합임. '듀얼 모니터암' 키워드 사용 시 소비자 혼동 주의.",
+    "created": "2026-06-15",
+    "price_source": "Google Spreadsheet 엘마운트 시트 J열 (스토어팜 자체몰 판매가)"
+  }
+}
